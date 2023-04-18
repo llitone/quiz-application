@@ -133,3 +133,7 @@ $RECYCLE.BIN/
 *.idea/
 
 _NCrunch*
+
+*.db
+
+**/__pycache__/
