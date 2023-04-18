@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy import orm
 
 from ..db_session import SqlAlchemyBase
 
@@ -30,3 +31,4 @@ class Answer(SqlAlchemyBase):
         nullable=False,
         default=False
     )
+    question = orm.relationship('Question')

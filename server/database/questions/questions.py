@@ -36,4 +36,8 @@ class Question(SqlAlchemyBase):
         sqlalchemy.Integer,
         sqlalchemy.ForeignKey("subjects.id")
     )
+    explanation = sqlalchemy.Column(
+        sqlalchemy.String,
+        nullable=False
+    )
     subject = orm.relationship('Subject')
