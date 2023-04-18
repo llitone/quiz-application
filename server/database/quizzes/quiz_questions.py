@@ -30,3 +30,8 @@ class QuizQuestion(SqlAlchemyBase):
         default=False
     )
     quiz = orm.relationship("Quiz")
+
+    def __str__(self):
+        return "QuizQuestion(id={0}, quiz_id={1}, question_id={2}, is_correct={3})".format(
+            self.id, self.quiz_id, self.question_id, self.is_correct
+        )

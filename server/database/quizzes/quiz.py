@@ -19,3 +19,6 @@ class Quiz(SqlAlchemyBase):
         sqlalchemy.TIMESTAMP,
         nullable=False
     )
+
+    def __str__(self):
+        return "Quiz(id={0}, start_at={1})".format(self.id, self.start_at)

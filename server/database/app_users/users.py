@@ -32,7 +32,7 @@ class AppUser(SqlAlchemyBase):
         nullable=False
     )
 
-    # def __str__(self):
-    #     return "User(id={0}, name={1}, phone_number={2}, password={3})".format(
-    #         self.id, self.name, self.phone_number, self.password
-    #     )
+    def __str__(self):
+        return "User(id={0}, name={1}, phone_number={2}, password={3})".format(
+            self.id, self.name, self.phone_number, self.password
+        )

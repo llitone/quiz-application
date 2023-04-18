@@ -19,3 +19,6 @@ class Subject(SqlAlchemyBase):
         sqlalchemy.String,
         nullable=False
     )
+
+    def __str__(self):
+        return "Subject(id={0}, subject={1})".format(self.id, self.subject)

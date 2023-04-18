@@ -1,3 +1,6 @@
-from database import db_session
+from flask import Flask
 
-db_session.global_init("db/test.db")
+application = Flask(__name__)
+
+if __name__ == "__main__":
+    application.run(debug=True)

@@ -32,3 +32,8 @@ class Answer(SqlAlchemyBase):
         default=False
     )
     question = orm.relationship('Question')
+
+    def __str__(self):
+        return "Answer(id={0}, question_id={1}, answer={2}, is_correct={3})".format(
+            self.id, self.question_id, self.answer, self.is_correct
+        )

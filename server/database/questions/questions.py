@@ -3,7 +3,7 @@ from sqlalchemy import orm
 
 from ..db_session import SqlAlchemyBase
 
-__all__ = ("Question", )
+__all__ = ("Question",)
 
 
 class Question(SqlAlchemyBase):
@@ -41,3 +41,10 @@ class Question(SqlAlchemyBase):
         nullable=False
     )
     subject = orm.relationship('Subject')
+
+    def __str__(self):
+        return "Question(id={0}, age={1}, question={2}, difficulty={3}, " \
+               "value={4}, subject_id={5}, explanation={6})".format(
+                    self.id, self.age, self.question, self.difficulty,
+                    self.value, self.subject_id, self.explanation
+                )

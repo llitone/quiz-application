@@ -1,3 +1,3 @@
 from .questions import *
-from .quizes import *
+from .quizzes import *
 from .app_users import *
