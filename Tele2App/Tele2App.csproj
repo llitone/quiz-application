@@ -53,10 +53,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Model\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="View\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
