@@ -1,13 +1,23 @@
 import os
+import logging
 
 from flask import Flask, request, abort, jsonify
 from database import db_session
 from database.app_users.users import AppUser
-
-application = Flask(__name__)
+from server.config import LOGGING_LEVEL, LOG_PATH, FORMAT
 
 if not os.path.isdir(".db"):
     os.mkdir(".db")
+if not os.path.isdir(".logs"):
+    os.mkdir(".logs")
+
+logger = logging.getLogger(__name__ + "_logger")
+logger.setLevel(LOGGING_LEVEL)
+handler = logging.FileHandler(LOG_PATH, mode='+a')
+handler.setFormatter(logging.Formatter(FORMAT))
+logger.addHandler(handler)
+
+application = Flask(__name__)
 
 db_session.global_init(".db/database.db")
 
@@ -21,7 +31,6 @@ def index():
 def register_user():
     if not request.json:
         abort(400)
-    print(tuple(request.json.keys()))
     if tuple(request.json.keys()) != ("name", "age", "phone_number", "password", "points"):
         return jsonify({"success": False, "error": "keys not success"}), 400
     if not isinstance(request.json["name"], str):
@@ -43,7 +52,7 @@ def register_user():
         new_user.password = request.json["password"]
         new_user.points = request.json["points"]
     except Exception as ex:
-        print(ex)
+        logger.error(ex)
         return jsonify({"success": False, "error": "user create error"}), 500
 
     try:
@@ -51,7 +60,7 @@ def register_user():
         session.add(new_user)
         session.commit()
     except Exception as ex:
-        print(ex)
+        logger.error(ex)
         return jsonify({"success": False, "error": "db error"}), 500
 
     return jsonify({"success": True}), 201
