@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tele2App.View.LoginPage"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
+
+        <Label 
+            FontSize="18" FontAttributes="Bold"
+            TextColor="Black"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            Text="Вход / Регистрация"></Label>
+
+        <StackLayout Grid.Row="1">
+            <Border
+                Stroke="#00B5EF"
+                StrokeThickness="4"
+                Background="White"
+                Padding="25, 50, 25, 50"
+                HorizontalOptions="Center"
+                >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Entry Keyboard="Telephone"
+                    TextColor="Black" WidthRequest="200"
+                    Placeholder="Номер телефона" PlaceholderColor="Gray">
+
+                    </Entry>
+                    <Entry IsPassword="True" Keyboard="Default"
+                       TextColor="Black" WidthRequest="200"
+                       Placeholder="Пароль" PlaceholderColor="Gray">
+
+                    </Entry>
+
+                    <Button TextColor="White" Margin="0, 20, 0, 20"
+                        Text="Войти" BackgroundColor="#00B5EF"
+                            HeightRequest="40" Padding="0">
+                        
+                    </Button>
+
+                    <Button TextColor="White" HeightRequest="40"
+                            Padding="0" Command=""
+                        Text="Регистрация" BackgroundColor="#00B5EF">
+
+                    </Button>
+                </VerticalStackLayout>
+            </Border>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
