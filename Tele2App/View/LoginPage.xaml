@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tele2App.View.LoginPage"
-             BackgroundColor="White">
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
+    </ContentPage.BindingContext>
 
     <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
 
@@ -43,7 +49,7 @@
                     </Button>
 
                     <Button TextColor="White" HeightRequest="40"
-                            Padding="0" Command=""
+                            Padding="0" Command="{Binding Registration}"
                         Text="Регистрация" BackgroundColor="#00B5EF">
 
                     </Button>
