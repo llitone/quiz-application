@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Tele2App.Services;
+using Tele2App.ViewModel;
 
 namespace Tele2App;
 
@@ -18,6 +20,7 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+
 
 		return builder.Build();
 	}
