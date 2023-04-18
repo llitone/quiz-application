@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy import orm
 
 from ..db_session import SqlAlchemyBase
 
@@ -17,7 +18,7 @@ class QuizQuestion(SqlAlchemyBase):
     )
     quiz_id = sqlalchemy.Column(
         sqlalchemy.Integer,
-        sqlalchemy.ForeignKey("quizes.id")
+        sqlalchemy.ForeignKey("quizzes.id")
     )
     question_id = sqlalchemy.Column(
         sqlalchemy.Integer,
@@ -28,3 +29,4 @@ class QuizQuestion(SqlAlchemyBase):
         nullable=False,
         default=False
     )
+    quiz = orm.relationship("Quiz")

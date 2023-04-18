@@ -6,7 +6,7 @@ __all__ = ("Quiz", )
 
 
 class Quiz(SqlAlchemyBase):
-    __tablename__ = 'quizes'
+    __tablename__ = 'quizzes'
 
     id = sqlalchemy.Column(
         sqlalchemy.Integer,
