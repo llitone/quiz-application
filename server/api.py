@@ -2,6 +2,7 @@ import os
 import logging
 
 from flask import Flask, request, abort, jsonify, make_response
+from flask_cors import CORS
 
 from server.database.app_users.authors import Author
 from .database import db_session
@@ -30,6 +31,7 @@ logger.setLevel(LOGGING_LEVEL)
 logger.addHandler(handler)
 
 application = Flask(__name__)
+CORS(application)
 
 db_session.global_init(".db/database.db")
 
@@ -133,6 +135,24 @@ def add_subject():
     return response
 
 
+@application.route(f"/app/api/v1.0/subjects/", methods=["GET"])
+def all_subjects():
+    result = []
+
+    try:
+        session = db_session.create_session()
+        for subject in session.query(Subject):
+            result.append({"id": subject.id, "subject": subject.subject})
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    response = make_response(jsonify(result), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
 @application.route(f"/app/api/v1.0/subjects/<name>", methods=["GET", "DELETE"])
 def subjects(name):
     session = db_session.create_session()
@@ -163,7 +183,10 @@ def add_question():
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    if tuple(request.json.keys()) != ("age", "question", "difficulty", "value", "subject_id", "explanation", "author_id"):
+    if tuple(request.json.keys()) != (
+        "age", "question", "difficulty", "value",
+        "subject_id", "explanation", "author_id"
+    ):
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
