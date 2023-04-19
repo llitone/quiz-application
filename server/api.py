@@ -3,6 +3,7 @@ import logging
 
 from flask import Flask, request, abort, jsonify, make_response
 
+from server.database.app_users.authors import Author
 from .database import db_session
 from .database.app_users.users import AppUser
 from .database.questions.subjects import Subject
@@ -21,6 +22,7 @@ handler = logging.FileHandler(LOG_PATH, mode='+a')
 handler.setFormatter(logging.Formatter(FORMAT))
 
 flask_logger = logging.getLogger("flask")
+flask_logger.setLevel(LOGGING_LEVEL)
 flask_logger.addHandler(handler)
 
 logger = logging.getLogger(__name__)
@@ -150,6 +152,9 @@ def subjects(name):
             response = make_response(jsonify({"error": "db error"}), 500)
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @application.route(f"/app/api/v1.0/questions/", methods=["POST"])
@@ -232,6 +237,9 @@ def questions(question_id):
             response = make_response(jsonify({"error": "db error"}), 500)
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @application.route(f"/app/api/v1.0/quizzes/", methods=["POST"])
@@ -289,6 +297,9 @@ def quizzes(room_id):
             response = make_response(jsonify({"error": "db error"}), 500)
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @application.route(f"/app/api/v1.0/users/<phone>", methods=["GET"])
@@ -368,6 +379,9 @@ def answer(question_id):
             response = make_response(jsonify({"error": "db error"}), 500)
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @application.route(f"/app/api/v1.0/quiz_questions/", methods=["POST"])
@@ -435,6 +449,78 @@ def quiz_question(question_id):
             response = make_response(jsonify({"error": "db error"}), 500)
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@application.route(f"/app/api/v1.0/authors/", methods=["POST"])
+def register_author():
+    if not request.json:
+        response = make_response(jsonify({"error": "keys not success"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if tuple(request.json.keys()) != ("login", "password"):
+        response = make_response(jsonify({"error": "keys not success"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if not isinstance(request.json["login"], str):
+        response = make_response(jsonify({"error": "name must be str"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if not isinstance(request.json["password"], int):
+        response = make_response(jsonify({"error": "age must be int"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    try:
+        new_author = Author()
+        new_author.login = request.json["login"]
+        new_author.password = request.json["password"]
+
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "new user add error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    try:
+        session = db_session.create_session()
+        session.add(new_author)
+        session.commit()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@application.route(f"/app/api/v1.0/authors/<login>", methods=["GET", "DELETE"])
+def get_author(login):
+    session = db_session.create_session()
+    author = session.query(Author).filter(Author.login == login).first()
+    if request.method == "GET":
+        if not author:
+            abort(404)
+            return
+        response = make_response(jsonify(author.json()), 201)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    else:
+        try:
+            session.delete(author)
+            session.commit()
+        except Exception as ex:
+            logger.error(ex)
+            response = make_response(jsonify({"error": "db error"}), 500)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+    response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @application.errorhandler(404)

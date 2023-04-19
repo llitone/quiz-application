@@ -24,3 +24,10 @@ class Author(SqlAlchemyBase):
         sqlalchemy.String,
         nullable=False
     )
+
+    def json(self=None):  # pep8 fix for .first().json()
+        return {
+            "id": self.id,
+            "login": self.login,
+            "password": self.password
+        }
