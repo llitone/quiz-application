@@ -48,3 +48,14 @@ class Question(SqlAlchemyBase):
                     self.id, self.age, self.question, self.difficulty,
                     self.value, self.subject_id, self.explanation
                 )
+
+    def json(self=None):  # pep8 fix for .first().json()
+        return {
+            "id": self.id,
+            "age": self.age,
+            "question": self.question,
+            "difficulty": self.difficulty,
+            "value": self.value,
+            "subject_id": self.subject_id,
+            "explanation": self.explanation
+        }
