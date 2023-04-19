@@ -19,7 +19,6 @@ class Answer(SqlAlchemyBase):
     question_id = sqlalchemy.Column(
         sqlalchemy.Integer,
         sqlalchemy.ForeignKey("questions.id"),
-        unique=True,
         nullable=False
     )
     answer = sqlalchemy.Column(

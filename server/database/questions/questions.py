@@ -40,7 +40,13 @@ class Question(SqlAlchemyBase):
         sqlalchemy.String,
         nullable=False
     )
+    author_id = sqlalchemy.Column(
+        sqlalchemy.Integer,
+        sqlalchemy.ForeignKey("authors.id"),
+        nullable=False
+    )
     subject = orm.relationship('Subject')
+    author = orm.relationship("Author")
 
     def __str__(self):
         return "Question(id={0}, age={1}, question={2}, difficulty={3}, " \
