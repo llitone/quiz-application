@@ -2,8 +2,10 @@ import os
 import logging
 
 from flask import Flask, request, abort, jsonify, make_response
+
 from database import db_session
 from database.app_users.users import AppUser
+from database.questions.subjects import Subject
 from server.config import LOGGING_LEVEL, LOG_PATH, FORMAT
 
 if not os.path.isdir(".db"):
@@ -70,6 +72,46 @@ def register_user():
     return make_response(jsonify({"success": True}), 201)
 
 
+@application.route(f"/app/api/v1.0/subjects/", methods=["POST"])
+def add_subject():
+    if not request.json:
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if tuple(request.json.keys()) != ("name",):
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if not isinstance(request.json["name"], str):
+        return make_response(jsonify({"error": "name must be str"}), 400)
+    try:
+        subject = Subject()
+        subject.subject = request.json["name"]
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "new session add error"}), 500)
+    try:
+        session = db_session.create_session()
+        session.add(subject)
+        session.commit()
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "db error"}), 500)
+    return make_response(jsonify({"success": True}), 201)
+
+
+@application.route(f"/app/api/v1.0/subjects/<name>", methods=["GET", "DELETE"])
+def subjects(name):
+    session = db_session.create_session()
+    subject = session.query(Subject).filter(Subject.subject == name).first()
+    if not subject:
+        abort(404)
+    if request.method == "GET":
+        return {"id": subject.id, "subject": subject.subject}
+    else:
+        try:
+            session.delete(subject)
+            session.commit()
+        except Exception as ex:
+            logger.error(ex)
+            return make_response(jsonify({"error": "db error"}), 500)
+
 @application.route(f"/app/api/v1.0/users/<phone>", methods=["GET"])
 def get_user(phone):
     session = db_session.create_session()
@@ -87,4 +129,4 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    application.run(debug=True, port=1238)
+    application.run(host="127.0.0.1", debug=True, port=1238)
