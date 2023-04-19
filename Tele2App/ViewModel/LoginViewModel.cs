@@ -10,9 +10,21 @@ namespace Tele2App.ViewModel
         private string _password;
         private LoginService _service;
 
+        private bool _isBusy;
+
         public LoginViewModel()
         {
             _service = new LoginService();
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                Notify(nameof(IsBusy));
+            }
         }
 
         public string PhoneNumber
@@ -52,12 +64,14 @@ namespace Tele2App.ViewModel
             {
                 return new ButtonCommand(async () =>
                 {
+                    IsBusy = true;
                     LoginUserModel model = new()
                     {
                         PhoneNumber = _phoneNumber,
                         Password = Encryptor.Encrypt(_password)
                     };
                     var isCorrect = await _service.Login(model);
+                    IsBusy = false;
                     if(!isCorrect)
                         await Shell.Current.DisplayAlert("Ошибка", "Ошибка входа, попробуйте позже", "ОК");
                     else
