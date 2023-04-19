@@ -4,7 +4,7 @@ import logging
 from flask import Flask, request, abort, jsonify, make_response
 from flask_cors import CORS
 
-from server.database.app_users.authors import Author
+from .database.app_users.authors import Author
 from .database import db_session
 from .database.app_users.users import AppUser
 from .database.questions.subjects import Subject
@@ -582,7 +582,3 @@ def not_found(error):
     response = make_response(jsonify({'error': 'Not found'}), 404)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-
-
-if __name__ == "__main__":
-    application.run(host="0.0.0.0", debug=True)
