@@ -75,7 +75,8 @@
             <ImageButton Grid.Column="0" Source="friends.png">
                 
             </ImageButton>
-            <ImageButton Grid.Column="1" Source="rooms.png">
+            <ImageButton Grid.Column="1" Source="rooms.png"
+                         Command="{Binding OpenRooms}">
 
             </ImageButton>
             <ImageButton Grid.Column="2" Source="settings.png" 

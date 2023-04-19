@@ -23,5 +23,16 @@ namespace Tele2App.ViewModel
                 });
             }
         }
+
+        public ButtonCommand OpenRooms
+        {
+            get
+            {
+                return new ButtonCommand(async () =>
+                {
+                    await Shell.Current.GoToAsync(nameof(RoomsPage));
+                });
+            }
+        }
     }
 }

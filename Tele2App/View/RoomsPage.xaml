@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tele2App.View.RoomsPage"
+             Title="RoomsPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White">
+    <Grid RowDefinitions="*, 6*">
+        <VerticalStackLayout Grid.Row="0">
+            <Frame BorderColor="White">
+                <HorizontalStackLayout>
+                    <Image Source="plus.png"></Image>
+                    <Label TextColor="Black" Text="Создать комнату"></Label>
+                </HorizontalStackLayout>
+            </Frame>
+            <Line Margin="15, 0, 15, 0" BackgroundColor="Black"></Line>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
