@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Tele2App.Current;
+using Tele2App.View;
 
 namespace Tele2App.ViewModel
 {
@@ -10,6 +11,17 @@ namespace Tele2App.ViewModel
         public MainViewModel()
         {
             CurrentUser = CurrentUser.GetUser();
+        }
+
+        public ButtonCommand OpenSetting
+        {
+            get
+            {
+                return new ButtonCommand(async () =>
+                {
+                    await Shell.Current.GoToAsync(nameof(SettingsPage));
+                });
+            }
         }
     }
 }

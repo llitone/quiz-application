@@ -10,61 +10,78 @@
     <ContentPage.BindingContext>
         <ViewModel:MainViewModel></ViewModel:MainViewModel>
     </ContentPage.BindingContext>
-    <VerticalStackLayout Spacing="20">
+    <Grid RowDefinitions="10*, *">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="20">
 
-        <Grid ColumnSpacing="15"
+                <Grid ColumnSpacing="15"
             Margin="15" HeightRequest="80"
               ColumnDefinitions="*, *">
-            <HorizontalStackLayout Grid.Column="0" Spacing="15">
-                <Image Source="dotnet_bot.png" 
+                    <HorizontalStackLayout Grid.Column="0" Spacing="15">
+                        <Image Source="dotnet_bot.png" 
                Aspect="AspectFit"></Image>
-                <Label VerticalOptions="Center"
+                        <Label VerticalOptions="Center"
                     TextColor="Black"
                        Text="{Binding CurrentUser.Name}">
 
-                </Label>
-            </HorizontalStackLayout>
+                        </Label>
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout HorizontalOptions="End" Grid.Column="1">
-                <Label VerticalOptions="Center"
+                    <HorizontalStackLayout HorizontalOptions="End" Grid.Column="1">
+                        <Label VerticalOptions="Center"
                    TextColor="Black" Text="{Binding CurrentUser.Points}">
 
-                </Label>
-                <Image Source="points.png">
-                    
-                </Image>
-            </HorizontalStackLayout>
-        </Grid>
+                        </Label>
+                        <Image Source="points.png">
+
+                        </Image>
+                    </HorizontalStackLayout>
+                </Grid>
 
 
-        <Label FontSize="20"
+                <Label FontSize="20"
             Margin="15,0,0,0" FontAttributes="Bold"
             TextColor="Black" Text="Ежедневные задания ⏰"></Label>
 
-        <CarouselView>
-            <CarouselView.ItemsSource>
-                <x:Array Type="{x:Type test:Product}">
-                    <test:Product Name="Huawei P50" ImagePath="dotnet_bot.png" Description="Цена 59000" />
-                    <test:Product Name="iPhone 14" ImagePath="dotnet_bot.png" Description="Цена 65000" />
-                    <test:Product Name="Realme GT2 Pro" ImagePath="dotnet_bot.png" Description="Цена 41000" />
-                    <test:Product Name="Xiaomi 12X" ImagePath="dotnet_bot.png" Description="Цена 53999" />
-                </x:Array>
-            </CarouselView.ItemsSource>
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <Frame>
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
-                            <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
-                            <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
+                <CarouselView>
+                    <CarouselView.ItemsSource>
+                        <x:Array Type="{x:Type test:Product}">
+                            <test:Product Name="Huawei P50" ImagePath="dotnet_bot.png" Description="Цена 59000" />
+                            <test:Product Name="iPhone 14" ImagePath="dotnet_bot.png" Description="Цена 65000" />
+                            <test:Product Name="Realme GT2 Pro" ImagePath="dotnet_bot.png" Description="Цена 41000" />
+                            <test:Product Name="Xiaomi 12X" ImagePath="dotnet_bot.png" Description="Цена 53999" />
+                        </x:Array>
+                    </CarouselView.ItemsSource>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
+                                    <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
+                                    <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
 
-        <Label FontSize="24"
+                <Label FontSize="24"
             Margin="15,0,0,0" FontAttributes="Bold"
             TextColor="Black" Text="Квизы 😎"></Label>
-    </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
+            <ImageButton Grid.Column="0" Source="friends.png">
+                
+            </ImageButton>
+            <ImageButton Grid.Column="1" Source="rooms.png">
+
+            </ImageButton>
+            <ImageButton Grid.Column="2" Source="settings.png" 
+                         Command="{Binding OpenSetting}">
+
+            </ImageButton>
+        </Grid>
+    </Grid>
 </ContentPage>
