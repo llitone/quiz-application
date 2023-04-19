@@ -4,7 +4,8 @@
              x:Class="Tele2App.View.RegistrationPage"
              xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
              BackgroundColor="White"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="True"
+             Shell.PresentationMode="ModalAnimated">
     <ContentPage.BindingContext>
         <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
     </ContentPage.BindingContext>
@@ -65,7 +66,7 @@
                         Keyboard="Default" IsPassword="True"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="Пароль" PlaceholderColor="Gray">
-
+                        
                     </Entry>
 
                     <Button Command="{Binding Registration}"

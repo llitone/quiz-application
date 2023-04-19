@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tele2App.Model;
+﻿using Tele2App.Model;
 using Tele2App.Services;
+using Tele2App.Current;
 
 namespace Tele2App.ViewModel
 {
@@ -77,25 +73,18 @@ namespace Tele2App.ViewModel
             get
             {
                 return new ButtonCommand( async () =>
-                {
-                    if (PhoneNumber == string.Empty)
-                        return;
-                    if (Password == string.Empty)
-                        return;
-                    if (Name == string.Empty)
-                        return;
-                    if (RepeatPassword != Password)
-                        return;
-
+                { 
                     RegistrationUserModel model = new()
                     {
                         Age = Age,
                         PhoneNumber = PhoneNumber,
-                        Password = Password,
+                        Password = Encryptor.Encrypt(Password),
                         Name = Name,
                         Points = 0
                     };
-                    await _service.Registration(model);
+                    bool isCorrect = await _service.Registration(model);
+                    if (!isCorrect)
+                        await Shell.Current.DisplayAlert("Ошибка", "Ошибка регистрации, попробуйте позже", "ОК");
                     await Shell.Current.GoToAsync("..");
                 });
             }
