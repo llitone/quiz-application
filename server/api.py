@@ -163,7 +163,7 @@ def add_question():
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    if tuple(request.json.keys()) != ("age", "question", "difficulty", "value", "subject_id", "explanation"):
+    if tuple(request.json.keys()) != ("age", "question", "difficulty", "value", "subject_id", "explanation", "author_id"):
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -191,6 +191,10 @@ def add_question():
         response = make_response(jsonify({"error": "explanation must be str"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+    if not isinstance(request.json["author_id"], int):
+        response = make_response(jsonify({"error": "author_id must be int"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     try:
         question = Question()
         question.age = request.json["age"]
@@ -199,6 +203,8 @@ def add_question():
         question.value = request.json["value"]
         question.subject_id = request.json["subject_id"]
         question.explanation = request.json["explanation"]
+        question.author_id = request.json["author_id"]
+
     except Exception as ex:
         logger.error(ex)
         response = make_response(jsonify({"error": "new session add error"}), 500)
@@ -214,6 +220,30 @@ def add_question():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@application.route(f"/app/api/v1.0/questions/", methods=["GET"])
+def all_questions():
+    try:
+        result = {}
+        session = db_session.create_session()
+        for subject in session.query(Subject):
+            result[subject.subject] = []
+            for question in session.query(Question).filter(Question.subject == subject):
+                question_result = question.json()
+                question_result["answers"] = []
+                for question_answer in session.query(Answer).filter(Answer.question == question):
+                    question_result["answers"].append(question_answer.json())
+                result[subject.subject].append(question_result)
+
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    response = make_response(jsonify(result), 201)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
@@ -468,8 +498,8 @@ def register_author():
         response = make_response(jsonify({"error": "name must be str"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    if not isinstance(request.json["password"], int):
-        response = make_response(jsonify({"error": "age must be int"}), 400)
+    if not isinstance(request.json["password"], str):
+        response = make_response(jsonify({"error": "password must be int"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
