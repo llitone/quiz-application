@@ -7,6 +7,7 @@ from database import db_session
 from database.app_users.users import AppUser
 from database.questions.subjects import Subject
 from server.config import LOGGING_LEVEL, LOG_PATH, FORMAT
+from server.database.quizzes.quiz import Quiz
 
 if not os.path.isdir(".db"):
     os.mkdir(".db")
@@ -111,6 +112,48 @@ def subjects(name):
         except Exception as ex:
             logger.error(ex)
             return make_response(jsonify({"error": "db error"}), 500)
+
+
+@application.route(f"/app/api/v1.0/quizzes/", methods=["POST"])
+def add_quiz():
+    if not request.json:
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if tuple(request.json.keys()) != ("room_id", ):
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if not isinstance(request.json["room_id"], int):
+        return make_response(jsonify({"error": "room_id must be int"}), 400)
+    try:
+        quiz = Quiz()
+        quiz.room_id = request.json["room_id"]
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "new session add error"}), 500)
+    try:
+        session = db_session.create_session()
+        session.add(quiz)
+        session.commit()
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "db error"}), 500)
+    return make_response(jsonify({"success": True}), 201)
+
+
+@application.route(f"/app/api/v1.0/quizzes/<int:room_id>", methods=["GET", "DELETE"])
+def quizzes(room_id):
+    session = db_session.create_session()
+    quiz = session.query(Quiz).filter(Quiz.room_id == room_id).first()
+    if not quiz:
+        abort(404)
+    if request.method == "GET":
+        return {"id": quiz.id, "room_id": quiz.room_id, "start_at": quiz.start_at}
+    else:
+        try:
+            session.delete(quiz)
+            session.commit()
+        except Exception as ex:
+            logger.error(ex)
+            return make_response(jsonify({"error": "db error"}), 500)
+
 
 @application.route(f"/app/api/v1.0/users/<phone>", methods=["GET"])
 def get_user(phone):
