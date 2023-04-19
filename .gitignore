@@ -473,5 +473,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+_NCrunch*
+
+*.db
+
+**/__pycache__/
 # Windows shortcuts
 *.lnk
