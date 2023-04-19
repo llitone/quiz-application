@@ -1,6 +1,7 @@
 ﻿using Tele2App.Model;
 using Tele2App.Services;
 using Tele2App.Current;
+using Tele2App.View;
 
 namespace Tele2App.ViewModel
 {
@@ -85,7 +86,8 @@ namespace Tele2App.ViewModel
                     bool isCorrect = await _service.Registration(model);
                     if (!isCorrect)
                         await Shell.Current.DisplayAlert("Ошибка", "Ошибка регистрации, попробуйте позже", "ОК");
-                    await Shell.Current.GoToAsync("..");
+                    else
+                        await Shell.Current.GoToAsync(nameof(MainPage));
                 });
             }
         }

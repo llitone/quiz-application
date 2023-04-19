@@ -60,7 +60,8 @@ namespace Tele2App.ViewModel
                     var isCorrect = await _service.Login(model);
                     if(!isCorrect)
                         await Shell.Current.DisplayAlert("Ошибка", "Ошибка входа, попробуйте позже", "ОК");
-                    await Shell.Current.GoToAsync("..");
+                    else
+                        await Shell.Current.GoToAsync(nameof(MainPage));
                 });
             }
         }

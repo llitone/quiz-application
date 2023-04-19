@@ -31,12 +31,12 @@
                     <RoundRectangle CornerRadius="20,20,20,20" />
                 </Border.StrokeShape>
                 <VerticalStackLayout>
-                    <Entry Keyboard="Telephone"
+                    <Entry Keyboard="Telephone" Text="{Binding PhoneNumber}"
                     TextColor="Black" WidthRequest="200"
                     Placeholder="Номер телефона" PlaceholderColor="Gray">
 
                     </Entry>
-                    <Entry IsPassword="True" Keyboard="Default"
+                    <Entry IsPassword="True" Keyboard="Default" Text="{Binding Password}"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="Пароль" PlaceholderColor="Gray">
 
@@ -44,7 +44,8 @@
 
                     <Button TextColor="White" Margin="0, 20, 0, 20"
                         Text="Войти" BackgroundColor="#00B5EF"
-                            HeightRequest="40" Padding="0">
+                            HeightRequest="40" Padding="0"
+                            Command="{Binding Login}">
                         
                     </Button>
 

@@ -15,7 +15,7 @@ namespace Tele2App.Services
         {
             try
             {
-                string endpoint = "http://127.0.0.1:1238/app/api/v1.0/users/";
+                string endpoint = "http://d1ffic00lt.com/app/api/v1.0/users/";
                 HttpClient client = new();
                 JsonContent content = JsonContent.Create(model);
 
@@ -24,7 +24,8 @@ namespace Tele2App.Services
                 if (result.IsSuccessStatusCode)
                 {
                     LoginService loginService = new();
-                    await loginService.Login(model.PhoneNumber, model.Password);
+                    if(await loginService.Login(model.PhoneNumber, model.Password) == false)
+                        return false;
                 }
 
                 return result.IsSuccessStatusCode;

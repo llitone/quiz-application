@@ -1,7 +1,6 @@
 ﻿using System.Net.Http.Json;
 using Tele2App.Current;
 using Tele2App.Model;
-using static Android.Graphics.ColorSpace;
 
 namespace Tele2App.Services
 {
@@ -12,11 +11,9 @@ namespace Tele2App.Services
             try
             {
                 HttpClient client = new HttpClient();
-                string endpoint = $"http://127.0.0.1:1238/app/api/v1.0/users/{model.PhoneNumber}";
+                string endpoint = $"http://d1ffic00lt.com/app/api/v1.0/users/{model.PhoneNumber}";
 
-                HttpContent content = null;
-
-                var response = await client.PostAsync(endpoint, content);
+                var response = await client.GetAsync(endpoint);
                 if (!response.IsSuccessStatusCode)
                     return false;
 
@@ -38,7 +35,7 @@ namespace Tele2App.Services
             try
             {
                 HttpClient client = new HttpClient();
-                string endpoint = $"http://127.0.0.1:1238/app/api/v1.0/users/{phoneNumber}";
+                string endpoint = $"http://d1ffic00lt.com/app/api/v1.0/users/{phoneNumber}";
 
                 HttpContent content = null;
 
