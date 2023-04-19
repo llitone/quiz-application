@@ -253,7 +253,7 @@ def add_answer():
     return make_response(jsonify({"success": True}), 201)
 
 
-@application.route(f"/app/api/v1.0/subjects/<int:question_id>", methods=["GET", "DELETE"])
+@application.route(f"/app/api/v1.0/answer/<int:question_id>", methods=["GET", "DELETE"])
 def answer(question_id):
     session = db_session.create_session()
     question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
