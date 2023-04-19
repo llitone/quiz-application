@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tele2App.View.RegistrationPage"
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="True"
+             Shell.PresentationMode="ModalAnimated">
+    <ContentPage.BindingContext>
+        <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
+
+        <Label 
+            FontSize="18" FontAttributes="Bold"
+            TextColor="Black"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            Text="Регистрация"></Label>
+
+        <StackLayout Grid.Row="1">
+            <Border
+                Stroke="#00B5EF"
+                StrokeThickness="4"
+                Background="White"
+                Padding="25, 50, 25, 50"
+                HorizontalOptions="Center"
+                >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label TextColor="Black" Text="Укажите Ваше ФИО:"></Label>
+                    <Entry Text="{Binding Name, Mode=TwoWay}"
+                        Keyboard="Default"
+                    TextColor="Black" WidthRequest="200"
+                    Placeholder="Иванов Иван Иванович" PlaceholderColor="Gray">
+
+                    </Entry>
+                    <Label TextColor="Black" Text="Укажите Ваш возраст:"></Label>
+                    <Entry Text="{Binding Age, Mode=TwoWay}"
+                        Keyboard="Numeric"
+                       TextColor="Black" WidthRequest="200"
+                       Placeholder="01.01.2023" PlaceholderColor="Gray">
+
+                    </Entry>
+                    <Label TextColor="Black" Text="Укажите номер телефона:"></Label>
+                    <Entry Text="{Binding PhoneNumber, Mode=TwoWay}"
+                        Keyboard="Telephone"
+                       TextColor="Black" WidthRequest="200"
+                       Placeholder="+7 (ххх) ххх-хх-хх" PlaceholderColor="Gray">
+
+                    </Entry>
+
+                    <Label TextColor="Black" Text="Придумайте пароль:"></Label>
+                    <Entry Text="{Binding Password, Mode=TwoWay}"
+                        Keyboard="Default" IsPassword="True"
+                       TextColor="Black" WidthRequest="200"
+                       Placeholder="Пароль" PlaceholderColor="Gray">
+
+                    </Entry>
+
+                    <Label TextColor="Black" Text="Повторите пароль:"></Label>
+                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}"
+                        Keyboard="Default" IsPassword="True"
+                       TextColor="Black" WidthRequest="200"
+                       Placeholder="Пароль" PlaceholderColor="Gray">
+                        
+                    </Entry>
+
+                    <Button Command="{Binding Registration}"
+                        TextColor="White" HeightRequest="40"
+                        Padding="0"
+                        Text="Готово" BackgroundColor="#00B5EF">
+                        
+                    </Button>
+                </VerticalStackLayout>
+            </Border>
+        </StackLayout>
+    </Grid>
+</ContentPage>
