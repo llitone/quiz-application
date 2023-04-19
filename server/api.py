@@ -10,6 +10,7 @@ from server.config import LOGGING_LEVEL, LOG_PATH, FORMAT
 from server.database.questions.questions import Question
 from server.database.questions.answers import Answer
 from server.database.quizzes.quiz import Quiz
+from server.database.quizzes.quiz_questions import QuizQuestion
 
 if not os.path.isdir(".db"):
     os.mkdir(".db")
@@ -223,7 +224,7 @@ def get_user(phone):
     return make_response(jsonify(user.json()), 201)
 
 
-@application.route(f"/app/api/v1.0/answer/", methods=["POST"])
+@application.route(f"/app/api/v1.0/answers/", methods=["POST"])
 def add_answer():
     if not request.json:
         return make_response(jsonify({"error": "keys not success"}), 400)
@@ -245,7 +246,7 @@ def add_answer():
         return make_response(jsonify({"error": "new session add error"}), 500)
     try:
         session = db_session.create_session()
-        session.add(answer)
+        session.add(question_answer)
         session.commit()
     except Exception as ex:
         logger.error(ex)
@@ -253,7 +254,54 @@ def add_answer():
     return make_response(jsonify({"success": True}), 201)
 
 
-@application.route(f"/app/api/v1.0/answer/<int:question_id>", methods=["GET", "DELETE"])
+@application.route(f"/app/api/v1.0/answers/<int:question_id>", methods=["GET", "DELETE"])
+def answer(question_id):
+    session = db_session.create_session()
+    question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
+    if not question_answer:
+        abort(404)
+    if request.method == "GET":
+        return question_answer.json()
+    else:
+        try:
+            session.delete(question_answer)
+            session.commit()
+        except Exception as ex:
+            logger.error(ex)
+            return make_response(jsonify({"error": "db error"}), 500)
+
+
+@application.route(f"/app/api/v1.0/quiz_questions/", methods=["POST"])
+def add_answer():
+    if not request.json:
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if tuple(request.json.keys()) != ("question_id", "quiz_id", "is_correct"):
+        return make_response(jsonify({"error": "keys not success"}), 400)
+    if not isinstance(request.json["question_id"], int):
+        return make_response(jsonify({"error": "question_id must be int"}), 400)
+    if not isinstance(request.json["quiz_id"], int):
+        return make_response(jsonify({"error": "answer must be quiz_id"}), 400)
+    if not isinstance(request.json["is_correct"], bool):
+        return make_response(jsonify({"error": "is_correct must be bool"}), 400)
+    try:
+        question_question = QuizQuestion()
+        question_question.question_id = request.json["question_id"]
+        question_question.quiz_id = request.json["quiz_id"]
+        question_question.is_correct = request.json["is_correct"]
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "new session add error"}), 500)
+    try:
+        session = db_session.create_session()
+        session.add(question_question)
+        session.commit()
+    except Exception as ex:
+        logger.error(ex)
+        return make_response(jsonify({"error": "db error"}), 500)
+    return make_response(jsonify({"success": True}), 201)
+
+
+@application.route(f"/app/api/v1.0/quiz_questions/<int:question_id>", methods=["GET", "DELETE"])
 def answer(question_id):
     session = db_session.create_session()
     question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
