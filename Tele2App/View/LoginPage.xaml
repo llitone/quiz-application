@@ -10,21 +10,21 @@
         <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
+    <Grid RowDefinitions="*, 8*, 2*" Margin="50" RowSpacing="10">
 
         <Label 
-            FontSize="18" FontAttributes="Bold"
-            TextColor="Black"
+            FontSize="20" FontAttributes="Bold"
+            FontFamily="Tele2DisplaySerif-Bold" TextColor="Black"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             Text="Вход / Регистрация"></Label>
 
         <StackLayout Grid.Row="1">
             <Border
-                Stroke="#00B5EF"
+                Stroke="Black"
                 StrokeThickness="4"
                 Background="White"
-                Padding="25, 50, 25, 50"
+                Padding="25, 50, 25, 40"
                 HorizontalOptions="Center"
                 >
                 <Border.StrokeShape>
@@ -42,21 +42,47 @@
 
                     </Entry>
 
-                    <Button TextColor="White" Margin="0, 20, 0, 20"
-                        Text="Войти" BackgroundColor="#00B5EF"
+                    <Button
+                        TextColor="White" Margin="5, 40, 5, 20"
+                        Text="Войти" FontFamily="Tele2TextSans-Bold" BackgroundColor="Black"
                             HeightRequest="40" Padding="0"
-                            Command="{Binding Login}">
-                        
+                            Command="{Binding Login}"
+                            CornerRadius="25">
+                        <Button.Shadow>
+                            <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="20"
+                                     Opacity="0.5"/>
+                        </Button.Shadow>
                     </Button>
 
-                    <Button TextColor="White" HeightRequest="40"
+                    <Button Margin="5, 0, 5, 20"
+                        TextColor="Black" FontFamily="Tele2TextSans-Bold" HeightRequest="40"
                             Padding="0" Command="{Binding Registration}"
-                        Text="Регистрация" BackgroundColor="#00B5EF">
-
+                        Text="Регистрация" BackgroundColor="White"
+                            CornerRadius="25">
+                        <Button.Shadow>
+                            <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="20"
+                                     Opacity="0.4" />
+                        </Button.Shadow>
                     </Button>
                 </VerticalStackLayout>
             </Border>
         </StackLayout>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           Color="Black"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+
+        <Image Source="tele2_logo_black.png" Grid.Row="2">
+            
+        </Image>
     </Grid>
 
 </ContentPage>

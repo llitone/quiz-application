@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
+             x:Class="Tele2App.View.QuestionPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White"
+             Title="QuestionPage">
+    <Grid RowDefinitions="*, 2*, *">
+        <VerticalStackLayout Grid.Row="0" HeightRequest="100">
+            <Frame VerticalOptions="Center" HorizontalOptions="Center"
+                BorderColor="Black"  BackgroundColor="Black" CornerRadius="40"
+                HeightRequest="80" WidthRequest="80">
+                <Label x:Name="Time" Text="10" FontSize="28" FontAttributes="Bold"
+                       TextColor="White" 
+                   VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            </Frame>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout 
+            Grid.Row="1" Spacing="20">
+            <Label Text="{Binding QuizQuestion.Text}"
+                TextColor="Black"
+                FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   FontSize="20">
+
+            </Label>
+
+            <ListView Margin="20, 0, 0, 0" SelectionMode="None"
+                SeparatorVisibility="None"
+                ItemsSource="{Binding QuizQuestion.Answers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout>
+                                <CheckBox Color="Black"
+                                          IsVisible="True"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                          VerticalOptions="Center">
+                                    
+                                </CheckBox>
+                                <Label VerticalOptions="Center"
+                                    Text="{Binding Text}"
+                                       TextColor="Black"></Label>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+
+        <Button Command="{Binding Answer}"
+            Margin="25" FontSize="28" FontAttributes="Bold"
+            HeightRequest="100" TextColor="White" CornerRadius="25" 
+            Grid.Row="2" Text="Ответить" BackgroundColor="#00B5EF">
+            
+        </Button>
+    </Grid>
+</ContentPage>

@@ -18,9 +18,7 @@ namespace Tele2App.Services
                 string endpoint = "http://d1ffic00lt.com/app/api/v1.0/users/";
                 HttpClient client = new();
                 JsonContent content = JsonContent.Create(model);
-
                 var result = await client.PostAsync(endpoint, content);
-
                 if (result.IsSuccessStatusCode)
                 {
                     LoginService loginService = new();

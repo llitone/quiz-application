@@ -159,8 +159,14 @@ def all_subjects():
 
 @application.route(f"/app/api/v1.0/subjects/<name>", methods=["GET", "DELETE"])
 def subjects(name):
-    session = db_session.create_session()
-    subject = session.query(Subject).filter(Subject.subject == name).first()
+    try:
+        session = db_session.create_session()
+        subject = session.query(Subject).filter(Subject.subject == name).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if not subject:
         abort(404)
     if request.method == "GET":
@@ -308,8 +314,14 @@ def all_questions():
 
 @application.route(f"/app/api/v1.0/questions/<int:question_id>", methods=["GET", "DELETE"])
 def questions(question_id):
-    session = db_session.create_session()
-    question = session.query(Question).filter(Question.id == question_id).first()
+    try:
+        session = db_session.create_session()
+        question = session.query(Question).filter(Question.id == question_id).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if not question:
         abort(404)
     if request.method == "GET":
@@ -398,8 +410,15 @@ def quizzes(room_id):
 
 @application.route(f"/app/api/v1.0/users/<phone>", methods=["GET"])
 def get_user(phone):
-    session = db_session.create_session()
-    user = session.query(AppUser).filter(AppUser.phone_number == phone).first()
+    try:
+        session = db_session.create_session()
+        user = session.query(AppUser).filter(AppUser.phone_number == phone).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
     if not user:
         abort(404)
         return
@@ -497,8 +516,14 @@ def add_answer():
 
 @application.route(f"/app/api/v1.0/answers/<int:question_id>", methods=["GET", "DELETE"])
 def answer(question_id):
-    session = db_session.create_session()
-    question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
+    try:
+        session = db_session.create_session()
+        question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if not question_answer:
         abort(404)
     if request.method == "GET":
@@ -567,8 +592,14 @@ def add_quiz_questions():
 
 @application.route(f"/app/api/v1.0/quiz_questions/<int:question_id>", methods=["GET", "DELETE"])
 def quiz_question(question_id):
-    session = db_session.create_session()
-    question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
+    try:
+        session = db_session.create_session()
+        question_answer = session.query(Answer).filter(Answer.question_id == question_id).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if not question_answer:
         abort(404)
     if request.method == "GET":
@@ -645,8 +676,14 @@ def jopa():
 
 @application.route(f"/app/api/v1.0/authors/<login>", methods=["GET", "DELETE"])
 def get_author(login):
-    session = db_session.create_session()
-    author = session.query(Author).filter(Author.login == login).first()
+    try:
+        session = db_session.create_session()
+        author = session.query(Author).filter(Author.login == login).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if request.method == "GET":
         if not author:
             abort(404)

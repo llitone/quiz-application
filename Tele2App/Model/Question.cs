@@ -23,5 +23,7 @@ namespace Tele2App.Model
         public int SubjectId { get; set; }
         [JsonPropertyName("explanation")]
         public string Explanation { get; set; }
+        [JsonPropertyName("answers")]
+        public List<Answer> Answers { get; set; }
     }
 }
