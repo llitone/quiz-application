@@ -280,16 +280,21 @@ def questions_by_subjects(subject_id):
 @application.route(f"/app/api/v1.0/questions/", methods=["GET"])
 def all_questions():
     try:
-        result = {}
+        result = []
         session = db_session.create_session()
         for subject in session.query(Subject):
-            result[subject.subject] = []
+            subject_list = {
+                "subject": subject.subject,
+                "id": subject.id,
+                "questions": []
+            }
             for question in session.query(Question).filter(Question.subject == subject):
                 question_result = question.json()
                 question_result["answers"] = []
                 for question_answer in session.query(Answer).filter(Answer.question == question):
                     question_result["answers"].append(question_answer.json())
-                result[subject.subject].append(question_result)
+                subject_list["questions"].append(question_result)
+            result.append(subject_list)
 
     except Exception as ex:
         logger.error(ex)

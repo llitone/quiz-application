@@ -10,4 +10,4 @@ from pprint import pprint
 # "answer": "захар", "is_correct": True}).text) print(requests.post("http://d1ffic00lt.com/app/api/v1.0/answers/",
 # json={"question_id": 1, "answer": "мама дификульта", "is_correct": True}).text)
 
-pprint(requests.get("http://d1ffic00lt.com/app/api/v1.0/subjects/").json())
+pprint(requests.get("http://d1ffic00lt.com/app/api/v1.0/questions/").json())
