@@ -23,7 +23,7 @@
             <Border
                 Stroke="Black"
                 StrokeThickness="4"
-                Background="White"
+                Background="Transparent"
                 Padding="25, 50, 25, 40"
                 HorizontalOptions="Center"
                 >
@@ -76,12 +76,17 @@
                         
                     </Entry>
 
-                    <Button Command="{Binding Registration}" Margin="5, 15, 0, 0"
+                    <Button Command="{Binding Registration}" Margin="5, 15, 0, 9"
                         TextColor="White" FontFamily="Tele2DisplaySerif-Regular"
                         HeightRequest="40" FontSize="15"
                         Padding="0" CornerRadius="25"
                         Text="Готово" BackgroundColor="Black">
-                        
+                        <Button.Shadow>
+                            <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="20"
+                                     Opacity="0.5" />
+                        </Button.Shadow>
                     </Button>
                 </VerticalStackLayout>
             </Border>
