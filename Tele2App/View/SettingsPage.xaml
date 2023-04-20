@@ -11,20 +11,20 @@
     </ContentPage.BindingContext>
     <Grid RowDefinitions="4*, *">
         <VerticalStackLayout Margin="25, 50, 25, 0" Spacing="25" Grid.Row="0">
-            <Frame BackgroundColor="LightGray" BorderColor="White">
+            <Frame BackgroundColor="#14000000" BorderColor="White" CornerRadius="15">
                 <HorizontalStackLayout>
                     <Image Source="warning.png">
 
                     </Image>
                     <VerticalStackLayout>
-                        <Label TextColor="Black" Text="О приложении"></Label>
-                        <Label TextColor="Black" Text="Версия 1.0.0"></Label>
+                        <Label TextColor="Black" FontFamily="Tele2TextSans-Bold" FontSize="16" Text="О приложении"></Label>
+                        <Label TextColor="#828282" FontFamily="Tele2TextSans-Regular" Text="Версия 1.0.0"></Label>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
             </Frame>
 
-            <Frame BackgroundColor="LightGray"
-                   BorderColor="White">
+            <Frame BackgroundColor="#14000000" 
+                   BorderColor="White" CornerRadius="15">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Logout}">
                         
@@ -33,11 +33,12 @@
                 <HorizontalStackLayout>
                     <Image Source="logout.png"></Image>
                     <Label VerticalOptions="Center"
-                        TextColor="Black" Text="Выйти"></Label>
+                        TextColor="Black" FontFamily="Tele2TextSans-Bold" 
+                        Text="Выйти" FontSize="18"></Label>
                 </HorizontalStackLayout>
             </Frame>
         </VerticalStackLayout>
-        <Image Source="logo.png" Grid.Row="1">
+        <Image Source="tele2_logo_black.png" Grid.Row="1">
             
         </Image>
     </Grid>

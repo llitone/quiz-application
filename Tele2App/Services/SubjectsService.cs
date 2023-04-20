@@ -11,6 +11,7 @@ namespace Tele2App.Services
 {
     public class SubjectsService
     {
+
         public async Task<List<Subject>> GetSubjects()
         {
             string _endpoint = "http://d1ffic00lt.com/app/api/v1.0/questions/";
