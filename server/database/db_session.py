@@ -21,7 +21,7 @@ def global_init(db_file):
     conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False'
     print(f"connecting to {conn_str}")
 
-    engine = sa.create_engine(conn_str, echo=False)
+    engine = sa.create_engine(conn_str, echo=False, pool_size=30, max_overflow=0)
     __factory = orm.sessionmaker(bind=engine)
 
     from . import __all_models
