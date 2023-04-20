@@ -368,6 +368,7 @@ requests.delete("http://{host}/app/api/v1.0/subjects/<name>")
     "room_id": {room_id}
 }
 ```
+`room_id` - id комнаты квиза. <br>
 #### Пример запроса
 ```python
 import requests
@@ -375,10 +376,9 @@ import requests
 json = {
     "room_id": {room_id}
 }
-
 requests.post("http://{host}/app/api/v1.0/quizzes/", json=json)
 ```
-
+`room_id` - id комнаты квиза. <br>
 #### Ответ
 ```python
 {
@@ -398,8 +398,11 @@ requests.get("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
     "id": {id}, 
     "room_id": {room_id}, 
     "start_at": {start_at}
-    }
+}
 ```
+`id` - id квиза. <br>
+`room_id` - id комнаты квиза. <br>
+`start_at` - дата начала квиза.  <br>
 ### DELETE
 #### Пример запроса
 ```python
