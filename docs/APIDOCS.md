@@ -228,17 +228,19 @@ requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "name": {name}
+}
 ```
 #### Пример запроса
 ```python
 import requests
 
 json = {
-    
+    "name": {name}
 }
 
-requests.post("http://{host}/app/api/v1.0", json=json)
+requests.post("http://{host}/app/api/v1.0/subjects/", json=json)
 ```
 
 #### Ответ
@@ -252,20 +254,23 @@ requests.post("http://{host}/app/api/v1.0", json=json)
 ```python
 import requests
 
-requests.get("http://{host}/app/api/v1.0")
+requests.get("http://{host}/app/api/v1.0/subjects/")
 ```
 #### Ответ
 ```python
-{
-    
-}
+[
+    {
+        "id": {id},
+        "subject": {subject}
+    }
+]
 ```
 ### DELETE
 #### Пример запроса
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0")
+requests.delete("http://127.0.0.1:5000/app/api/v1.0/subjects/")
 ```
 
 #### Ответ
@@ -279,14 +284,16 @@ requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "room_id": {room_id}
+}
 ```
 #### Пример запроса
 ```python
 import requests
 
 json = {
-    
+    "room_id": {room_id}
 }
 
 requests.post("http://{host}/app/api/v1.0", json=json)
@@ -308,8 +315,10 @@ requests.get("http://{host}/app/api/v1.0")
 #### Ответ
 ```python
 {
-    
-}
+    "id": {id}, 
+    "room_id": {room_id}, 
+    "start_at": {start_at}
+    }
 ```
 ### DELETE
 #### Пример запроса
