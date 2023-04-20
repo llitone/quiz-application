@@ -14,7 +14,7 @@
 
         <Label 
             FontSize="20" FontAttributes="Bold"
-            TextColor="Black"
+            FontFamily="Tele2DisplaySerif-Bold" TextColor="Black"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             Text="Вход / Регистрация"></Label>
@@ -24,7 +24,7 @@
                 Stroke="Black"
                 StrokeThickness="4"
                 Background="White"
-                Padding="25, 50, 25, 50"
+                Padding="25, 50, 25, 40"
                 HorizontalOptions="Center"
                 >
                 <Border.StrokeShape>
@@ -43,16 +43,21 @@
                     </Entry>
 
                     <Button
-                        TextColor="White" Margin="5, 20, 5, 20"
-                        Text="Войти" BackgroundColor="Black"
+                        TextColor="White" Margin="5, 40, 5, 20"
+                        Text="Войти" FontFamily="Tele2TextSans-Bold" BackgroundColor="Black"
                             HeightRequest="40" Padding="0"
                             Command="{Binding Login}"
                             CornerRadius="25">
-                        
+                        <Button.Shadow>
+                            <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="20"
+                                     Opacity="0.5" />
+                        </Button.Shadow>
                     </Button>
 
-                    <Button Margin="5"
-                        TextColor="Black" HeightRequest="40"
+                    <Button Margin="5, 0, 5, 20"
+                        TextColor="Black" FontFamily="Tele2TextSans-Bold" HeightRequest="40"
                             Padding="0" Command="{Binding Registration}"
                         Text="Регистрация" BackgroundColor="White"
                             CornerRadius="25">
@@ -60,7 +65,7 @@
                             <Shadow Brush="Black"
                                      Offset="0, 0"
                                      Radius="20"
-                                     Opacity="0.5" />
+                                     Opacity="0.4" />
                         </Button.Shadow>
                     </Button>
                 </VerticalStackLayout>
@@ -75,7 +80,7 @@
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>
 
-        <Image Source="logo.png" Grid.Row="2">
+        <Image Source="tele2_logo_black.png" Grid.Row="2">
             
         </Image>
     </Grid>
