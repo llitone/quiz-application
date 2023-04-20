@@ -19,11 +19,11 @@ API для связи клиента и сервера
     "points": {points}
 }
 ```
-`name` - 
-`age` - 
-`naphone_number` - 
-`password` - 
-`points` - 
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`phone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 
 #### Пример запроса
 ```python
@@ -40,11 +40,11 @@ json = {
 requests.post("http://{host}/app/api/v1.0/users/", json=json)
 ```
 
-`name` - 1<br>
-`age` - 1<br>
-`phone_number` - 1<br>
-`password` - 1<br>
-`points` - 1<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`phone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 
 
 #### Ответ
@@ -71,7 +71,12 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "points": {points}
 }
 ```
-
+`id` - id пользователя.<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`naphone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 ## 1.2 Answers
 
 ### POST
@@ -83,6 +88,9 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "is_correct": {is_correct}
 }
 ```
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность вопроса.<br>
 #### Пример запроса
 ```python
 import requests
@@ -95,7 +103,9 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/answers/", json=json)
 ```
-
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность ответа.<br>
 #### Ответ
 ```python
 {
@@ -119,6 +129,10 @@ requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "is_correct": {is_correct}
 }
 ```
+`id` - id ответана вопрос. <br>
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность ответа.<br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -148,6 +162,14 @@ requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "author_id": {author_id}
 }
 ```
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
+
 #### Пример запроса
 ```python
 import requests
@@ -164,7 +186,13 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/questions/", json=json)
 ```
-
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
 #### Ответ
 ```python
 {
@@ -191,6 +219,14 @@ requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "author_id": {author_id}
 }
 ```
+`id` - id вопроса. <br>
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
 #### Пример запроса для всех questions
 ```python
 import requests
@@ -226,6 +262,20 @@ requests.get("http://{host}/app/api/v1.0/questions/")
     }
 ]
 ```
+`subject_id` - id предмета, к которому привязан вопрос. <br>
+`subject_subject` - название предмета, к которому привязан вопрос.  <br>
+`question_age` - возраст целевой аудитории вопроса.  <br>
+`question_author_id` - id автора вопроса. <br>
+`question_difficulty` - уровень сложности вопроса. <br>
+`question_explanation` - объеснения.  <br>
+`question_id` - id вопроса.  <br>
+`question_question` - вопрос. <br>
+`question_subject_id` - id предмета, к которому привязан вопрос. <br>
+`question_value` - кличество очков за правильный ответ.  <br>
+`answer_answer` - ответ на вопрос. <br>
+`answer_id` - id ответа на вопрос. <br>
+`answer_is_correct` - корректность ответа на вопрос. <br>
+`answer_question_id` - id вопроса, привязанного к ответу. <br>
 ### DELETE
 #### Пример запроса
 ```python
