@@ -31,7 +31,11 @@ logger.setLevel(LOGGING_LEVEL)
 logger.addHandler(handler)
 
 application = Flask(__name__)
-CORS(application)
+CORS(application, resource={
+    r"/*": {
+        "origins": "*"
+    }
+})
 
 db_session.global_init(".db/database.db")
 
@@ -184,8 +188,8 @@ def add_question():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if tuple(request.json.keys()) != (
-        "age", "question", "difficulty", "value",
-        "subject_id", "explanation", "author_id"
+            "age", "question", "difficulty", "value",
+            "subject_id", "explanation", "author_id"
     ):
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
@@ -243,6 +247,32 @@ def add_question():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     response = make_response(jsonify({"success": True}), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@application.route("/app/api/v1.0/questions/subject=<int:subject_id>")
+def questions_by_subjects(subject_id):
+    session = db_session.create_session()
+    try:
+        subject = session.query(Subject).filter(Subject.id == subject_id).first()
+    except Exception as ex:
+        logger.error(ex)
+        abort(404)
+        return
+    result = []
+    try:
+        for question in session.query(Question).filter(Question.subject == subject):
+            question_result = question.json()
+            question_result["answers"] = []
+            for question_answer in session.query(Answer).filter(Answer.question == question):
+                question_result["answers"].append(question_answer.json())
+            result.append(question_result)
+    except Exception as ex:
+        logger.error(ex)
+        abort(500)
+        return
+    response = make_response(jsonify(result), 201)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
