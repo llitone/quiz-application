@@ -202,7 +202,7 @@ requests.get("http://{host}/app/api/v1.0/questions/")
                 "value": {question_value},
                 "answers": [
                     {
-                        "answer: {answer_answer},
+                        "answer": {answer_answer},
                         "id": {answer_id},
                         "is_correct": {answer_is_correct},
                         "question_id": {answer_question_id}
