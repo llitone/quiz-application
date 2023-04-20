@@ -10,7 +10,7 @@
         <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
+    <Grid RowDefinitions="*, 8*, 2*" Margin="50" RowSpacing="10">
 
         <Label 
             FontSize="20" FontAttributes="Bold"
@@ -74,6 +74,10 @@
                            Color="Black"
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>
+
+        <Image Source="logo.png" Grid.Row="2">
+            
+        </Image>
     </Grid>
 
 </ContentPage>
