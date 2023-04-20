@@ -18,10 +18,18 @@
             Margin="15" HeightRequest="80"
               ColumnDefinitions="*, *">
                     <HorizontalStackLayout Grid.Column="0" Spacing="15">
-                        <Image Source="dotnet_bot.png" 
-               Aspect="AspectFit"></Image>
+                        <Image Source="avatarka.png" 
+               Aspect="AspectFit">
+                            <Image.Shadow>
+                                <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="15"
+                                     Opacity="0.5" />
+                            </Image.Shadow>
+                        </Image>
                         <Label VerticalOptions="Center"
-                    TextColor="Black"
+                    TextColor="Black" FontFamily="Tele2TextSans-Regular"
+                       FontSize="18"
                        Text="{Binding CurrentUser.Name}">
 
                         </Label>
@@ -29,10 +37,11 @@
 
                     <HorizontalStackLayout HorizontalOptions="End" Grid.Column="1">
                         <Label VerticalOptions="Center"
+                               FontFamily="Tele2TextSans-Regular" FontSize="20"
                    TextColor="Black" Text="{Binding CurrentUser.Points}">
 
                         </Label>
-                        <Image Source="points.png">
+                        <Image Source="point.png" WidthRequest="40">
 
                         </Image>
                     </HorizontalStackLayout>
@@ -40,7 +49,7 @@
 
 
                 <Label FontSize="20"
-            Margin="15,0,0,0" FontAttributes="Bold"
+            Margin="15,0,0,0" FontAttributes="Bold" FontFamily="Tele2DisplaySerif-Regular"
             TextColor="Black" Text="Ежедневные задания ⏰"></Label>
 
                 <CarouselView>
@@ -66,23 +75,27 @@
                 </CarouselView>
 
                 <Label FontSize="24"
-            Margin="15,0,0,0" FontAttributes="Bold"
+            Margin="15,0,0,0" FontAttributes="Bold" FontFamily="Tele2DisplaySerif-Regular"
             TextColor="Black" Text="Квизы 😎"></Label>
             </VerticalStackLayout>
         </ScrollView>
+        <VerticalStackLayout Grid.Row="1">
+            <Line BackgroundColor="Black" Margin="0, 0, 0, 0">
+            </Line>
+            <Grid ColumnDefinitions="*,*,*">
+                <ImageButton Grid.Column="0" Source="friends.png"
+                             >
 
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
-            <ImageButton Grid.Column="0" Source="friends.png">
-                
-            </ImageButton>
-            <ImageButton Grid.Column="1" Source="rooms.png"
+                </ImageButton>
+                <ImageButton Grid.Column="1" Source="rooms.png"
                          Command="{Binding OpenRooms}">
 
-            </ImageButton>
-            <ImageButton Grid.Column="2" Source="settings.png" 
+                </ImageButton>
+                <ImageButton Grid.Column="2" Source="settings.png"
                          Command="{Binding OpenSetting}">
 
-            </ImageButton>
-        </Grid>
+                </ImageButton>
+            </Grid>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>
