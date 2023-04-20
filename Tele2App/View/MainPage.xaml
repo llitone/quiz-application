@@ -91,7 +91,7 @@
                          Command="{Binding OpenRooms}">
 
                 </ImageButton>
-                <ImageButton Grid.Column="2" Source="settings.png"
+                <ImageButton Grid.Column="2" Source="settings.png" 
                          Command="{Binding OpenSetting}">
 
                 </ImageButton>
