@@ -174,7 +174,8 @@ requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "difficulty": {difficulty},
     "value": {value},
     "subject_id": {subject_id},
-    "explanation": {explanation}
+    "explanation": {explanation}, 
+    "author_id": {author_id}
 }
 ```
 #### Пример запроса для всех questions
@@ -194,7 +195,8 @@ requests.get("http://{host}/app/api/v1.0/questions/")
             "difficulty": {question_difficulty},
             "value": {question_value},
             "subject_id": {question_subject_id},
-            "explanation": {question_explanation},
+            "explanation": {question_explanation}, 
+            "author_id": {author_id},
             "answers": [
                 {
                     "id": {answer_id},
