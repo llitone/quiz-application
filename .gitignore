@@ -481,6 +481,7 @@ _NCrunch*
 # Windows shortcuts
 *.lnk
 **.idea/
+**.qr/
 .DS_Store
 **/node_modules
 **/dist

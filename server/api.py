@@ -585,6 +585,16 @@ def register_author():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+e = False
+@application.route(f"/app/api/v1.0/жопа", methods=["GET", "POST"])
+def jopa():
+    global e
+    print(request.host)
+    if request.method == "POST":
+        e = True
+        return 201
+    else:
+        return {"status": e}
 
 @application.route(f"/app/api/v1.0/authors/<login>", methods=["GET", "DELETE"])
 def get_author(login):
