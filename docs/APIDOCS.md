@@ -11,11 +11,27 @@ API для связи клиента и сервера
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "name": {name}, 
+    "age": {age}, 
+    "phone_number": {phone_number}, 
+    "password": {password}, 
+    "points": {points}
+}
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    "name": {name}, 
+    "age": {age}, 
+    "phone_number": {phone_number}, 
+    "password": {password}, 
+    "points": {points}
+}
+
+requests.post("http://{host}/app/api/v1.0/users/", json=json)
 ```
 
 #### Ответ
@@ -27,12 +43,19 @@ API для связи клиента и сервера
 ### GET
 #### Пример запроса
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0/users/<phone>")
 ```
 #### Ответ
 ```python
 {
-    
+    "id": {id},
+    "name": {name},
+    "age": {age},
+    "phone_number": {phone_number},
+    "password": {password},
+    "points": {points}
 }
 ```
 
@@ -41,11 +64,23 @@ API для связи клиента и сервера
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "question_id": {question_id}, 
+    "answer": {answer}, 
+    "is_correct": {is_correct}
+}
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    "question_id": {question_id}, 
+    "answer": {answer}, 
+    "is_correct": {is_correct}
+}
+
+requests.post("http://{host}/app/api/v1.0/answers/", json=json)
 ```
 
 #### Ответ
@@ -55,20 +90,28 @@ API для связи клиента и сервера
 }
 ```
 ### GET
+
 #### Пример запроса
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
 #### Ответ
 ```python
 {
-    
+    "id": {id},
+    "question_id": {question_id},
+    "answer": {answer},
+    "is_correct": {is_correct}
 }
 ```
 ### DELETE
 #### Пример запроса
 ```python
+import requests
 
+requests.delete("http://127.0.0.1:5000/app/api/v1.0/answers/<int:question_id>")
 ```
 
 #### Ответ
@@ -82,11 +125,31 @@ API для связи клиента и сервера
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "age": {age}, 
+    "question": {question}, 
+    "difficulty": {difficulty}, 
+    "value": {value},
+    "subject_id": {subject_id}, 
+    "explanation": {explanation}, 
+    "author_id": {author_id}
+}
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    "age": {age}, 
+    "question": {question}, 
+    "difficulty": {difficulty}, 
+    "value": {value},
+    "subject_id": {subject_id}, 
+    "explanation": {explanation}, 
+    "author_id": {author_id}
+}
+
+requests.post("http://{host}/app/api/v1.0/questions/", json=json)
 ```
 
 #### Ответ
@@ -96,20 +159,60 @@ API для связи клиента и сервера
 }
 ```
 ### GET
-#### Пример запроса
+#### Пример запроса для одного question
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
 #### Ответ
 ```python
 {
-    
+    "id": {id},
+    "age": {age},
+    "question": {question},
+    "difficulty": {difficulty},
+    "value": {value},
+    "subject_id": {subject_id},
+    "explanation": {explanation}
+}
+```
+#### Пример запроса для всех questions
+```python
+import requests
+
+requests.get("http://{host}/app/api/v1.0/questions/")
+```
+#### Ответ
+```python
+{
+    {subject}: [
+        {
+            "id": {question_id},
+            "age": {question_age},
+            "question": {question_question},    
+            "difficulty": {question_difficulty},
+            "value": {question_value},
+            "subject_id": {question_subject_id},
+            "explanation": {question_explanation},
+            "answers": [
+                {
+                    "id": {answer_id},
+                    "question_id": {answer_question_id},
+                    "answer": {answer_answer},
+                    "is_correct": {answer_is_correct}
+                }
+            ]
+        }
+    ]
 }
 ```
 ### DELETE
 #### Пример запроса
 ```python
+import requests
 
+requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ```
 
 #### Ответ
@@ -127,7 +230,13 @@ API для связи клиента и сервера
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    
+}
+
+requests.post("http://{host}/app/api/v1.0", json=json)
 ```
 
 #### Ответ
@@ -139,7 +248,9 @@ API для связи клиента и сервера
 ### GET
 #### Пример запроса
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0")
 ```
 #### Ответ
 ```python
@@ -150,7 +261,9 @@ API для связи клиента и сервера
 ### DELETE
 #### Пример запроса
 ```python
+import requests
 
+requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ```
 
 #### Ответ
@@ -168,7 +281,13 @@ API для связи клиента и сервера
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    
+}
+
+requests.post("http://{host}/app/api/v1.0", json=json)
 ```
 
 #### Ответ
@@ -180,7 +299,9 @@ API для связи клиента и сервера
 ### GET
 #### Пример запроса
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0")
 ```
 #### Ответ
 ```python
@@ -191,7 +312,9 @@ API для связи клиента и сервера
 ### DELETE
 #### Пример запроса
 ```python
+import requests
 
+requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ```
 
 #### Ответ
@@ -209,7 +332,13 @@ API для связи клиента и сервера
 ```
 #### Пример запроса
 ```python
+import requests
 
+json = {
+    
+}
+
+requests.post("http://{host}/app/api/v1.0", json=json)
 ```
 
 #### Ответ
@@ -221,7 +350,9 @@ API для связи клиента и сервера
 ### GET
 #### Пример запроса
 ```python
+import requests
 
+requests.get("http://{host}/app/api/v1.0")
 ```
 #### Ответ
 ```python
@@ -232,7 +363,9 @@ API для связи клиента и сервера
 ### DELETE
 #### Пример запроса
 ```python
+import requests
 
+requests.delete("http://127.0.0.1:5000/app/api/v1.0")
 ```
 
 #### Ответ
