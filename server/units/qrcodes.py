@@ -38,9 +38,3 @@ class QRCodeGenerator(object):
     @classmethod
     def __change_dir(cls):
         cls.DIR = not cls.DIR
-
-
-generator = QRCodeGenerator()
-generator.mkdir()
-generator.make("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-generator.save("good.png")
