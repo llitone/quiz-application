@@ -15,8 +15,9 @@ class QRCodeGenerator(object):
             self.__change_dir()
         self.bg = bg
         self.fill_color = fill_color
-        self._img: Any = None
         self.qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L)
+        self._img: Any = None
+
 
     def save(self, filename: str):
         if isinstance(self._img, type(None)):
