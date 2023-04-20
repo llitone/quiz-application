@@ -336,7 +336,7 @@ def add_quiz():
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    if tuple(request.json.keys()) != ("`room_id`",):
+    if tuple(request.json.keys()) != ("room_id",):
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -368,8 +368,14 @@ def add_quiz():
 
 @application.route(f"/app/api/v1.0/quizzes/<int:room_id>", methods=["GET", "DELETE"])
 def quizzes(room_id):
-    session = db_session.create_session()
-    quiz = session.query(Quiz).filter(Quiz.room_id == room_id).first()
+    try:
+        session = db_session.create_session()
+        quiz = session.query(Quiz).filter(Quiz.room_id == room_id).first()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if not quiz:
         abort(404)
     if request.method == "GET":
@@ -401,6 +407,47 @@ def get_user(phone):
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+@application.route(f"/app/api/v1.0/users/update/", methods=["POST"])
+def update_user():
+    if not request.json:
+        response = make_response(jsonify({"error": "keys not success"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if tuple(request.json.keys()) != ("id", "points"):
+        response = make_response(jsonify({"error": "keys not success"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if not isinstance(request.json["id"], int):
+        response = make_response(jsonify({"error": "room_id must be int"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if not isinstance(request.json["points"], int):
+        response = make_response(jsonify({"error": "points must be int"}), 400)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    try:
+        session = db_session.create_session()
+        user = session.query(AppUser).filter(AppUser.id == request.json["id"]).first()
+        if not user:
+            abort(404)
+            return
+        user.points = request.json["points"]
+        session.commit()
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    try:
+        session
+    except Exception as ex:
+        logger.error(ex)
+        response = make_response(jsonify({"error": "db error"}), 500)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    response = make_response(jsonify(user.json()), 201)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @application.route(f"/app/api/v1.0/answers/", methods=["POST"])
 def add_answer():
