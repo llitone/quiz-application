@@ -1,7 +1,7 @@
 <h1 align="center">API</h1>
 
 
-# v1.0
+<h1 align="center">v1.0</h1>
 ## 1. Обзор
 
 API для связи клиента и сервера
