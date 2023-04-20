@@ -13,7 +13,7 @@ namespace Tele2App.ViewModel
             CurrentUser = CurrentUser.GetUser();
             CurrentUser.Name = ConvertName(CurrentUser.Name);
         }
-        private string _convert_name(string name)
+        private string ConvertName(string name)
         {
             string result = "";
             int count = 0;
