@@ -6,4 +6,8 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
 }
