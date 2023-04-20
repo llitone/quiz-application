@@ -10,10 +10,10 @@
         <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
+    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
 
         <Label 
-            FontSize="18" FontAttributes="Bold"
+            FontSize="20" FontAttributes="Bold"
             TextColor="Black"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
@@ -21,7 +21,7 @@
 
         <StackLayout Grid.Row="1">
             <Border
-                Stroke="#00B5EF"
+                Stroke="Black"
                 StrokeThickness="4"
                 Background="White"
                 Padding="25, 50, 25, 50"
@@ -69,10 +69,10 @@
                         
                     </Entry>
 
-                    <Button Command="{Binding Registration}"
+                    <Button Command="{Binding Registration}" Margin="5"
                         TextColor="White" HeightRequest="40"
-                        Padding="0"
-                        Text="Готово" BackgroundColor="#00B5EF">
+                        Padding="0" CornerRadius="25"
+                        Text="Готово" BackgroundColor="Black">
                         
                     </Button>
                 </VerticalStackLayout>
