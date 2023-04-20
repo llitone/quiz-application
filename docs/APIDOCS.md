@@ -188,7 +188,7 @@ requests.get("http://{host}/app/api/v1.0/questions/")
 ```python
 [
     {
-        "id: {subject_id},
+        "id": {subject_id},
         "subject": {subject_subject},
         "questions": [
             {
