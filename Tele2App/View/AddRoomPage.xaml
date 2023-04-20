@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
+             x:Class="Tele2App.View.AddRoomPage"
+             Title="AddRoomPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <ViewModel:RoomsViewModel></ViewModel:RoomsViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Назовите комнату" TextColor="Black"
+                       FontFamily="Tele2DisplaySerif-Bold" FontSize="30"
+                       Margin="20"></Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Entry Text="{Binding NameRoom, Mode=TwoWay}"
+                   Keyboard="Default" FontFamily="Tele2TextSans-Regular" FontSize="18"
+                   TextColor="Black" WidthRequest="360" Margin="0, -20, 0, 0"
+                   Placeholder="Название комнаты" PlaceholderColor="Gray"></Entry>
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Выберите категорию" TextColor="Black"
+                       FontFamily="Tele2DisplaySerif-Bold" FontSize="30"
+                       Margin="20,10,0,0"></Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Picker Margin="0,1,0,0" FontFamily="Tele2TextSans-Regular"
+                    Title="Выберите категорию" FontSize="18"
+                    WidthRequest="360">
+                <Picker.Items>
+                    <x:String>Математика</x:String>
+                    <x:String>Математика Ллирика</x:String>
+                    <x:String>Математика Тропиной</x:String>
+                </Picker.Items>
+            </Picker>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Button Margin="0,510,0,0" WidthRequest="300"
+                    CornerRadius="25" BackgroundColor="White"
+                    TextColor="Black" Text="Создать"
+                    FontFamily="Tele2TextSans-Bold" FontSize="18"
+                    Command="{ Binding CreateRoom}">
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                            Offset="0, 0"
+                            Radius="20"
+                            Opacity="0.5" />
+                </Button.Shadow>
+
+            </Button>
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentPage>

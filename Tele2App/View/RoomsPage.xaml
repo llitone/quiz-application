@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
              x:Class="Tele2App.View.RoomsPage"
              Title="RoomsPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <ViewModel:RoomsViewModel></ViewModel:RoomsViewModel>
+    </ContentPage.BindingContext>
     <Grid RowDefinitions="*, 6*">
         <VerticalStackLayout Grid.Row="0">
             <Frame BorderColor="White">
-                <HorizontalStackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddRoom}">
+                        
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="20">
                     <Image Source="plus.png"></Image>
-                    <Label TextColor="Black" Text="Создать комнату"></Label>
+                    <Label TextColor="Black" VerticalOptions="Center"
+                           Text="Создать комнату" FontSize="24"
+                           FontFamily="Tele2DisplaySerif-Regular"></Label>
                 </HorizontalStackLayout>
             </Frame>
             <Line Margin="15, 0, 15, 0" BackgroundColor="Black"></Line>
