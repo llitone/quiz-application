@@ -68,6 +68,8 @@
                 <Label FontSize="24"
             Margin="15,0,0,0" FontAttributes="Bold"
             TextColor="Black" Text="Квизы 😎"></Label>
+
+                <Label TextColor="Black" Text="{Binding Questions[0].Text}"></Label>
             </VerticalStackLayout>
         </ScrollView>
 

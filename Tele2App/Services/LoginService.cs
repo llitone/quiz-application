@@ -37,9 +37,7 @@ namespace Tele2App.Services
                 HttpClient client = new HttpClient();
                 string endpoint = $"http://d1ffic00lt.com/app/api/v1.0/users/{phoneNumber}";
 
-                HttpContent content = null;
-
-                var response = await client.PostAsync(endpoint, content);
+                var response = await client.GetAsync(endpoint);
                 if (!response.IsSuccessStatusCode)
                     return false;
 

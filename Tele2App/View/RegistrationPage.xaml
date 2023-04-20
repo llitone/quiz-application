@@ -10,73 +10,77 @@
         <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
+    <ScrollView>
+        <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
 
-        <Label 
+            <Label 
             FontSize="20" FontAttributes="Bold"
             TextColor="Black"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             Text="Регистрация"></Label>
 
-        <StackLayout Grid.Row="1">
-            <Border
+
+            <StackLayout Grid.Row="1">
+                <Border
                 Stroke="Black"
                 StrokeThickness="4"
                 Background="White"
                 Padding="25, 50, 25, 50"
                 HorizontalOptions="Center"
                 >
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="20,20,20,20" />
-                </Border.StrokeShape>
-                <VerticalStackLayout>
-                    <Label TextColor="Black" Text="Укажите Ваше ФИО:"></Label>
-                    <Entry Text="{Binding Name, Mode=TwoWay}"
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,20,20,20" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
+                        <Label TextColor="Black" Text="Укажите Ваше ФИО:"></Label>
+                        <Entry Text="{Binding Name, Mode=TwoWay}"
                         Keyboard="Default"
                     TextColor="Black" WidthRequest="200"
                     Placeholder="Иванов Иван Иванович" PlaceholderColor="Gray">
 
-                    </Entry>
-                    <Label TextColor="Black" Text="Укажите Ваш возраст:"></Label>
-                    <Entry Text="{Binding Age, Mode=TwoWay}"
+                        </Entry>
+                        <Label TextColor="Black" Text="Укажите Ваш возраст:"></Label>
+                        <Entry Text="{Binding Age, Mode=TwoWay}"
                         Keyboard="Numeric"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="01.01.2023" PlaceholderColor="Gray">
 
-                    </Entry>
-                    <Label TextColor="Black" Text="Укажите номер телефона:"></Label>
-                    <Entry Text="{Binding PhoneNumber, Mode=TwoWay}"
+                        </Entry>
+                        <Label TextColor="Black" Text="Укажите номер телефона:"></Label>
+                        <Entry Text="{Binding PhoneNumber, Mode=TwoWay}"
                         Keyboard="Telephone"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="+7 (ххх) ххх-хх-хх" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
-                    <Label TextColor="Black" Text="Придумайте пароль:"></Label>
-                    <Entry Text="{Binding Password, Mode=TwoWay}"
+                        <Label TextColor="Black" Text="Придумайте пароль:"></Label>
+                        <Entry Text="{Binding Password, Mode=TwoWay}"
                         Keyboard="Default" IsPassword="True"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="Пароль" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
-                    <Label TextColor="Black" Text="Повторите пароль:"></Label>
-                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}"
+                        <Label TextColor="Black" Text="Повторите пароль:"></Label>
+                        <Entry Text="{Binding RepeatPassword, Mode=TwoWay}"
                         Keyboard="Default" IsPassword="True"
                        TextColor="Black" WidthRequest="200"
                        Placeholder="Пароль" PlaceholderColor="Gray">
-                        
-                    </Entry>
 
-                    <Button Command="{Binding Registration}" Margin="5"
+                        </Entry>
+
+                        <Button Command="{Binding Registration}" Margin="5"
                         TextColor="White" HeightRequest="40"
                         Padding="0" CornerRadius="25"
                         Text="Готово" BackgroundColor="Black">
-                        
-                    </Button>
-                </VerticalStackLayout>
-            </Border>
-        </StackLayout>
-    </Grid>
+
+                        </Button>
+                    </VerticalStackLayout>
+                </Border>
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
 </ContentPage>
