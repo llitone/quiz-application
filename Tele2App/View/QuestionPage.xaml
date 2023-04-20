@@ -11,7 +11,7 @@
             <Frame VerticalOptions="Center" HorizontalOptions="Center"
                 BorderColor="Black"  BackgroundColor="Black" CornerRadius="40"
                 HeightRequest="80" WidthRequest="80">
-                <Label Text="42" FontSize="28" FontAttributes="Bold"
+                <Label x:Name="Time" Text="10" FontSize="28" FontAttributes="Bold"
                        TextColor="White" 
                    VerticalOptions="Center" HorizontalOptions="Center"></Label>
             </Frame>
@@ -19,7 +19,7 @@
 
         <VerticalStackLayout 
             Grid.Row="1" Spacing="20">
-            <Label Text="{Binding Question.Text}"
+            <Label Text="{Binding QuizQuestion.Text}"
                 TextColor="Black"
                 FontAttributes="Bold" 
                    HorizontalOptions="Center"
@@ -27,16 +27,16 @@
 
             </Label>
 
-            <ListView Margin="20, 0, 0, 0"
+            <ListView Margin="20, 0, 0, 0" SelectionMode="None"
                 SeparatorVisibility="None"
-                ItemsSource="{Binding Question.Answers}">
+                ItemsSource="{Binding QuizQuestion.Answers}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <HorizontalStackLayout>
                                 <CheckBox Color="Black"
                                           IsVisible="True"
-                                          IsChecked="False"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay}"
                                           VerticalOptions="Center">
                                     
                                 </CheckBox>
@@ -50,7 +50,8 @@
             </ListView>
         </VerticalStackLayout>
 
-        <Button Margin="25" FontSize="28" FontAttributes="Bold"
+        <Button Command="{Binding Answer}"
+            Margin="25" FontSize="28" FontAttributes="Bold"
             HeightRequest="100" TextColor="White" CornerRadius="25" 
             Grid.Row="2" Text="Ответить" BackgroundColor="#00B5EF">
             

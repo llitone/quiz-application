@@ -8,7 +8,7 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
     <ContentPage.BindingContext>
-        <ViewModel:MainViewModel></ViewModel:MainViewModel>
+        <ViewModel:MainViewModel x:Name="VM"></ViewModel:MainViewModel>
     </ContentPage.BindingContext>
     <Grid RowDefinitions="10*, *">
         <ScrollView Grid.Row="0">
