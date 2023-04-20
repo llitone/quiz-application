@@ -59,7 +59,7 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
 }
 ```
 
-## 1.3 Answers
+## 1.2 Answers
 
 ### POST
 #### Пример запроса в формате json
@@ -120,7 +120,7 @@ requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "success": True
 }
 ```
-## 1.4 Questions
+## 1.3 Questions
 
 ### POST
 #### Пример запроса в формате json
@@ -218,7 +218,7 @@ requests.get("http://{host}/app/api/v1.0/questions/")
 ```python
 import requests
 
-requests.delete("http://{host}/app/api/v1.0")
+requests.delete("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
 
 #### Ответ
@@ -227,7 +227,7 @@ requests.delete("http://{host}/app/api/v1.0")
     "success": True
 }
 ```
-## 1.5 Subjects
+## 1.4 Subjects
 
 ### POST
 #### Пример запроса в формате json
@@ -254,7 +254,7 @@ requests.post("http://{host}/app/api/v1.0/subjects/", json=json)
 }
 ```
 ### GET
-#### Пример запроса
+#### Пример запроса для всех subjects
 ```python
 import requests
 
@@ -269,12 +269,25 @@ requests.get("http://{host}/app/api/v1.0/subjects/")
     }
 ]
 ```
+#### Пример запроса для одного subject
+```python
+import requests
+
+requests.get("http://{host}/app/api/v1.0/subjects/<name>")
+```
+#### Ответ
+```python
+{
+    "id": {id},
+    "subject": {subject}
+}
+```
 ### DELETE
 #### Пример запроса
 ```python
 import requests
 
-requests.delete("http://{host}/app/api/v1.0/subjects/")
+requests.delete("http://{host}/app/api/v1.0/subjects/<name>")
 ```
 
 #### Ответ
@@ -283,7 +296,7 @@ requests.delete("http://{host}/app/api/v1.0/subjects/")
     "success": True
 }
 ```
-## 1.6 Quizzes
+## 1.5 Quizzes
 
 ### POST
 #### Пример запроса в формате json
@@ -300,7 +313,7 @@ json = {
     "room_id": {room_id}
 }
 
-requests.post("http://{host}/app/api/v1.0", json=json)
+requests.post("http://{host}/app/api/v1.0/quizzes/", json=json)
 ```
 
 #### Ответ
@@ -314,7 +327,7 @@ requests.post("http://{host}/app/api/v1.0", json=json)
 ```python
 import requests
 
-requests.get("http://{host}/app/api/v1.0")
+requests.get("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
 #### Ответ
 ```python
@@ -329,7 +342,7 @@ requests.get("http://{host}/app/api/v1.0")
 ```python
 import requests
 
-requests.delete("http://{host}/app/api/v1.0")
+requests.delete("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
 
 #### Ответ
