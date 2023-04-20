@@ -11,7 +11,7 @@ namespace Tele2App.ViewModel
         public MainViewModel()
         {
             CurrentUser = CurrentUser.GetUser();
-            CurrentUser.Name = this._convert_name(CurrentUser.Name);
+            CurrentUser.Name = ConvertName(CurrentUser.Name);
         }
         private string _convert_name(string name)
         {
