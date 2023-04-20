@@ -10,7 +10,8 @@
         <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
+    <ScrollView>
+        <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
 
         <Label 
             FontSize="22" FontAttributes="Bold"
@@ -19,8 +20,9 @@
             VerticalOptions="Center" 
             Text="Регистрация"></Label>
 
-        <StackLayout Grid.Row="1">
-            <Border
+
+            <StackLayout Grid.Row="1">
+                <Border
                 Stroke="Black"
                 StrokeThickness="4"
                 Background="Transparent"
@@ -54,7 +56,7 @@
                         TextColor="Black" WidthRequest="200"
                         Placeholder="+7 (ххх) ххх-хх-хх" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
                     <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Придумайте пароль:"></Label>
@@ -64,7 +66,7 @@
                         TextColor="Black" WidthRequest="200"
                         Placeholder="Пароль" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
                     <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Повторите пароль:"></Label>

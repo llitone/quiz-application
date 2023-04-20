@@ -52,22 +52,20 @@
             Margin="15,0,0,0" FontAttributes="Bold" FontFamily="Tele2DisplaySerif-Regular"
             TextColor="Black" Text="Ежедневные задания ⏰"></Label>
 
-                <CarouselView>
-                    <CarouselView.ItemsSource>
-                        <x:Array Type="{x:Type test:Product}">
-                            <test:Product Name="Huawei P50" ImagePath="dotnet_bot.png" Description="Цена 59000" />
-                            <test:Product Name="iPhone 14" ImagePath="dotnet_bot.png" Description="Цена 65000" />
-                            <test:Product Name="Realme GT2 Pro" ImagePath="dotnet_bot.png" Description="Цена 41000" />
-                            <test:Product Name="Xiaomi 12X" ImagePath="dotnet_bot.png" Description="Цена 53999" />
-                        </x:Array>
-                    </CarouselView.ItemsSource>
+                <CarouselView ItemsSource="{Binding EverydayTasks}" BackgroundColor="#C882FF">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Frame>
+                            <Frame BorderColor="#9548D2"
+                                BackgroundColor="#9548D2" Margin="20" HeightRequest="100">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:MainViewModel}}, Path=GoToQuestion}"
+                                                          CommandParameter="{Binding .}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
                                 <VerticalStackLayout>
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
-                                    <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
-                                    <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
+                                    <Label TextColor="Black" Text="{Binding Text}"></Label>
+                                    <Label TextColor="Black" Text="{Binding Points}"></Label>
                                 </VerticalStackLayout>
                             </Frame>
                         </DataTemplate>

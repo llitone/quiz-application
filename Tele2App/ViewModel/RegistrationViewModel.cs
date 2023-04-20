@@ -74,7 +74,12 @@ namespace Tele2App.ViewModel
             get
             {
                 return new ButtonCommand( async () =>
-                { 
+                {
+                    if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+                    {
+                        await Shell.Current.DisplayAlert("Ошибка", "Нет подключения к интернету, попробуйте позже", "ОК");
+                        return;
+                    }
                     RegistrationUserModel model = new()
                     {
                         Age = Age,
