@@ -122,7 +122,7 @@ def add_subject():
         subject.subject = request.json["name"]
     except Exception as ex:
         logger.error(ex)
-        response = make_response(jsonify({"error": "new session add error"}), 500)
+        response = make_response(jsonify({"error": "new subject add error"}), 500)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     try:
@@ -195,7 +195,7 @@ def add_question():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["age"], int):
-        response = make_response(jsonify({"error": "name must be int"}), 400)
+        response = make_response(jsonify({"error": "age must be int"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["question"], str):
@@ -336,7 +336,7 @@ def add_quiz():
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    if tuple(request.json.keys()) != ("room_id",):
+    if tuple(request.json.keys()) != ("`room_id`",):
         response = make_response(jsonify({"error": "keys not success"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -487,7 +487,7 @@ def add_quiz_questions():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["quiz_id"], int):
-        response = make_response(jsonify({"error": "answer must be quiz_id"}), 400)
+        response = make_response(jsonify({"error": "quiz_id must be int"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["is_correct"], bool):
@@ -553,11 +553,11 @@ def register_author():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["login"], str):
-        response = make_response(jsonify({"error": "name must be str"}), 400)
+        response = make_response(jsonify({"error": "login must be str"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if not isinstance(request.json["password"], str):
-        response = make_response(jsonify({"error": "password must be int"}), 400)
+        response = make_response(jsonify({"error": "password must be str"}), 400)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
