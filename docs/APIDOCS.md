@@ -19,6 +19,12 @@ API для связи клиента и сервера
     "points": {points}
 }
 ```
+`name` - 
+`age` - 
+`naphone_number` - 
+`password` - 
+`points` - 
+
 #### Пример запроса
 ```python
 import requests
@@ -33,6 +39,13 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/users/", json=json)
 ```
+
+`name` - 1<br>
+`age` - 1<br>
+`phone_number` - 1<br>
+`password` - 1<br>
+`points` - 1<br>
+
 
 #### Ответ
 ```python
