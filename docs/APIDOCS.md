@@ -10,7 +10,7 @@ API для связи клиента и сервера
 ## 1.1 Users
 
 ### POST
-#### Пример запроса в формате json
+#### Пример запроса в формате json для регистрации пользователя
 ```python
 {
     "name": {name}, 
@@ -26,7 +26,7 @@ API для связи клиента и сервера
 `password` - хэшированный пароль пользователя.<br>
 `points` - количество очков пользователя.<br>
 
-#### Пример запроса
+#### Пример запроса для регистрации пользователя
 ```python
 import requests
 
@@ -54,6 +54,50 @@ requests.post("http://{host}/app/api/v1.0/users/", json=json)
     "success": True
 }
 ```
+#### Пример запроса в формате json для обновления поинтов пользователя
+```python
+{
+    "id": {id}, 
+    "points": {points}
+}
+```
+`id` - id пользователя. <br>
+`points` - количество очков пользователя.<br>
+
+#### Пример запроса для обновления поинтов пользователя
+```python
+import requests
+
+json = {
+    "id": {id}, 
+    "points": {points}
+}
+
+requests.post("http://{host}/app/api/v1.0/users/", json=json)
+```
+
+`id` - id пользователя. <br>
+`points` - количество очков пользователя.<br>
+
+
+#### Ответ
+```python
+{
+    "id": {id},
+    "name": {name},
+    "age": {age},
+    "phone_number": {phone_number},
+    "password": {password},
+    "points": {points}
+}
+```
+`id` - id пользователя.<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`naphone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
+
 ### GET
 #### Пример запроса
 ```python
