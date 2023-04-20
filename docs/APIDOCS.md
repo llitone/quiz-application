@@ -71,6 +71,7 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "points": {points}
 }
 ```
+`<phone>` - номер телефона (логин) пользователя. <br>
 `id` - id пользователя.<br>
 `name` - имя пользователя.<br>
 `age` - возраст пользователя.<br>
@@ -129,6 +130,7 @@ requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "is_correct": {is_correct}
 }
 ```
+`<int:question_id>` - id вопроса. <br>
 `id` - id ответана вопрос. <br>
 `question_id` - id вопроса, к которому привязан ответ.<br>
 `answer` - ответ на вопрос.<br>
@@ -140,6 +142,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 
 #### Ответ
 ```python
@@ -219,6 +222,7 @@ requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "author_id": {author_id}
 }
 ```
+`<int:question_id>` - id вопроса. <br>
 `id` - id вопроса. <br>
 `age` - возраст целевой аудитории.<br>
 `question` - вопрос.<br>
@@ -283,6 +287,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 
 #### Ответ
 ```python
@@ -299,6 +304,8 @@ requests.delete("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "name": {name}
 }
 ```
+`name` - название предмета. <br>
+
 #### Пример запроса
 ```python
 import requests
@@ -309,6 +316,7 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/subjects/", json=json)
 ```
+`name` - название предмета. <br>
 
 #### Ответ
 ```python
@@ -332,12 +340,16 @@ requests.get("http://{host}/app/api/v1.0/subjects/")
     }
 ]
 ```
+`id` - id предмета. <br>
+`subject` - название предмета. <br>
 #### Пример запроса для одного subject
 ```python
 import requests
 
 requests.get("http://{host}/app/api/v1.0/subjects/<name>")
 ```
+`<name>` - название предмета. <br>
+
 #### Ответ
 ```python
 {
@@ -345,6 +357,8 @@ requests.get("http://{host}/app/api/v1.0/subjects/<name>")
     "subject": {subject}
 }
 ```
+`id` - id предмета. <br>
+`subject` - название предмета. <br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -352,6 +366,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/subjects/<name>")
 ```
+`<name>` - название предмета. <br>
 
 #### Ответ
 ```python
@@ -392,6 +407,8 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
+`<int:room_id>` - id комнаты квиза. <br>
+
 #### Ответ
 ```python
 {
@@ -410,6 +427,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
+`<int:room_id>` - id комнаты квиза. <br>
 
 #### Ответ
 ```python
