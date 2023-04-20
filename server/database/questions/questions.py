@@ -63,5 +63,6 @@ class Question(SqlAlchemyBase):
             "difficulty": self.difficulty,
             "value": self.value,
             "subject_id": self.subject_id,
-            "explanation": self.explanation
+            "explanation": self.explanation,
+            "author_id": self.author_id
         }

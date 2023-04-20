@@ -480,3 +480,4 @@ _NCrunch*
 **/__pycache__/
 # Windows shortcuts
 *.lnk
+**.idea/
