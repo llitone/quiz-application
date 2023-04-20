@@ -6,7 +6,15 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="White"
              Title="QuestionPage">
-    <VerticalStackLayout>
-        <Label TextColor="Black" Text="{Binding Question.Text}"></Label>
-    </VerticalStackLayout>
+    <Grid RowDefinitions="*, 2*, *">
+        <VerticalStackLayout Grid.Row="0">
+            <Frame VerticalOptions="Center" HorizontalOptions="Center"
+                BorderColor="Black"  BackgroundColor="Black" CornerRadius="40"
+                HeightRequest="80" WidthRequest="80">
+                <Label Text="42" TextColor="White" 
+                   VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            </Frame>
+            <Label TextColor="Black" Text="{Binding Question.Text}"></Label>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
