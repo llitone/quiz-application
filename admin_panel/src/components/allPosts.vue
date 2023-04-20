@@ -1,23 +1,34 @@
 <template>
     <div>
         <button @click="newQuestion">Добавить вопрос</button>
-    </div>
-    <div>
-        <table>
+        <button @click="logout">Выйти из аккаунта</button>
+    <!-- </div> -->
+    <!-- <div> -->
+        <table style="border: 1px solid black">
             <tr>
                 <th>id</th>
                 <th>возраст??</th>
+                <th>сложность</th>
+                <th>очки за correct ответ</th>
                 <th>вопрос</th>
                 <th>ответы лол</th>
                 <th>объяснение</th>
+                <th>id предмета</th>
                 <th>delete</th>
             </tr>
             <tr v-for="item in data" :key="item.id" >
                 <td>{{ item.id }}</td>
                 <td>{{ item.age }}</td>
+                <td>{{ item.difficulty }}</td>
+                <td>{{ item.value }}</td>
                 <td>{{ item.question }}</td>
-                <td>{{ item.answers }} </td>
+                <td>
+                    <ul v-for="bb in item.answers" :key="bb.id">
+                        <li>{{ bb.answer }} | {{ bb.is_correct }}</li>
+                    </ul>
+                </td>
                 <td>{{ item.explanation }}</td>
+                <td>{{ item.subject_id }}</td>
                 <td><button @click="deleteQuestion(item.id)">Удалить</button></td>
             </tr>
         </table>
@@ -40,6 +51,10 @@ export default {
         newQuestion(){
             this.$router.push('/new')
         },
+        logout(){
+            delete(window.localStorage.jwt)
+            this.$router.push('/')
+        },
         deleteQuestion(id){
             deleteQuestionbyId(id).then((data) => {
                 console.log(data);
@@ -48,6 +63,7 @@ export default {
         }
     },
     beforeCreate() {
+        console.log(window.localStorage);
         if (window.localStorage.jwt == undefined){
             this.$router.push('/')
         }
@@ -84,9 +100,20 @@ export default {
 </script>
 
 <style>
+table {
+    background: white;
+}
 .card{
     display: inline;
     width: 300px;
     height: 400px;
+}
+
+td {
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
 }
 </style>

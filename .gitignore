@@ -482,7 +482,7 @@ _NCrunch*
 *.lnk
 **.idea/
 .DS_Store
-**/node_modules
+# **/node_modules
 **/dist
 
 
