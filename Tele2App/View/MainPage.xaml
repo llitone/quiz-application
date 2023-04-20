@@ -29,7 +29,7 @@
                         </Image>
                         <Label VerticalOptions="Center"
                     TextColor="Black" FontFamily="Tele2TextSans-Regular"
-                       FontSize="18"
+                       FontSize="24"
                        Text="{Binding CurrentUser.Name}">
 
                         </Label>
@@ -92,6 +92,7 @@
 
                 </ImageButton>
                 <ImageButton Grid.Column="2" Source="settings.png" 
+
                          Command="{Binding OpenSetting}">
 
                 </ImageButton>
