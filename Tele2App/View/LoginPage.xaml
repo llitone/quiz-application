@@ -10,10 +10,10 @@
         <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="20">
+    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
 
         <Label 
-            FontSize="18" FontAttributes="Bold"
+            FontSize="20" FontAttributes="Bold"
             TextColor="Black"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
@@ -21,7 +21,7 @@
 
         <StackLayout Grid.Row="1">
             <Border
-                Stroke="#00B5EF"
+                Stroke="Black"
                 StrokeThickness="4"
                 Background="White"
                 Padding="25, 50, 25, 50"
@@ -42,17 +42,26 @@
 
                     </Entry>
 
-                    <Button TextColor="White" Margin="0, 20, 0, 20"
-                        Text="Войти" BackgroundColor="#00B5EF"
+                    <Button
+                        TextColor="White" Margin="5, 20, 5, 20"
+                        Text="Войти" BackgroundColor="Black"
                             HeightRequest="40" Padding="0"
-                            Command="{Binding Login}">
+                            Command="{Binding Login}"
+                            CornerRadius="25">
                         
                     </Button>
 
-                    <Button TextColor="White" HeightRequest="40"
+                    <Button Margin="5"
+                        TextColor="Black" HeightRequest="40"
                             Padding="0" Command="{Binding Registration}"
-                        Text="Регистрация" BackgroundColor="#00B5EF">
-
+                        Text="Регистрация" BackgroundColor="White"
+                            CornerRadius="25">
+                        <Button.Shadow>
+                            <Shadow Brush="Black"
+                                     Offset="0, 0"
+                                     Radius="20"
+                                     Opacity="0.5" />
+                        </Button.Shadow>
                     </Button>
                 </VerticalStackLayout>
             </Border>
