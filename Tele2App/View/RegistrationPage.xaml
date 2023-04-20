@@ -10,86 +10,89 @@
         <ViewModel:RegistrationViewModel></ViewModel:RegistrationViewModel>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
+    <ScrollView>
+        <Grid RowDefinitions="*, 10*" Margin="50" RowSpacing="10">
 
-        <Label 
+            <Label 
             FontSize="22" FontAttributes="Bold"
             TextColor="Black" FontFamily="Tele2DisplaySerif-Bold"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             Text="Регистрация"></Label>
 
-        <StackLayout Grid.Row="1">
-            <Border
+
+            <StackLayout Grid.Row="1">
+                <Border
                 Stroke="Black"
                 StrokeThickness="4"
                 Background="Transparent"
                 Padding="25, 50, 25, 40"
                 HorizontalOptions="Center"
                 >
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="20,20,20,20" />
-                </Border.StrokeShape>
-                <VerticalStackLayout>
-                    <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,20,20,20" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
+                        <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Укажите Ваше ФИО:"></Label>
-                    <Entry Text="{Binding Name, Mode=TwoWay}"
+                        <Entry Text="{Binding Name, Mode=TwoWay}"
                         Keyboard="Default" FontFamily="Tele2TextSans-Regular"
                         TextColor="Black" WidthRequest="200"
                         Placeholder="Иванов Иван Иванович" PlaceholderColor="Gray">
 
-                    </Entry>
-                    <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
+                        </Entry>
+                        <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Укажите Ваш возраст:"></Label>
-                    <Entry Text="{Binding Age, Mode=TwoWay}"
+                        <Entry Text="{Binding Age, Mode=TwoWay}"
                         Keyboard="Numeric" FontFamily="Tele2TextSans-Regular"
                         TextColor="Black" WidthRequest="200"
                         Placeholder="01.01.2023" PlaceholderColor="Gray">
 
-                    </Entry>
-                    <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
+                        </Entry>
+                        <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Укажите номер телефона:"></Label>
-                    <Entry Text="{Binding PhoneNumber, Mode=TwoWay}"
+                        <Entry Text="{Binding PhoneNumber, Mode=TwoWay}"
                         Keyboard="Telephone" FontFamily="Tele2TextSans-Regular"
                         TextColor="Black" WidthRequest="200"
                         Placeholder="+7 (ххх) ххх-хх-хх" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
-                    <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
+                        <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Придумайте пароль:"></Label>
-                    <Entry Text="{Binding Password, Mode=TwoWay}"
+                        <Entry Text="{Binding Password, Mode=TwoWay}"
                         FontFamily="Tele2TextSans-Regular"
                         Keyboard="Default" IsPassword="True"
                         TextColor="Black" WidthRequest="200"
                         Placeholder="Пароль" PlaceholderColor="Gray">
 
-                    </Entry>
+                        </Entry>
 
-                    <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
+                        <Label TextColor="Black" FontFamily="Tele2DisplaySerif-Regular" 
                            FontSize="15" Text="Повторите пароль:"></Label>
-                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}"
+                        <Entry Text="{Binding RepeatPassword, Mode=TwoWay}"
                         FontFamily="Tele2TextSans-Regular"
                         Keyboard="Default" IsPassword="True"
                         TextColor="Black" WidthRequest="200"
                         Placeholder="Пароль" PlaceholderColor="Gray">
-                        
-                    </Entry>
 
-                    <Button Command="{Binding Registration}" Margin="5, 15, 0, 9"
+                        </Entry>
+
+                        <Button Command="{Binding Registration}" Margin="5, 15, 0, 9"
                         TextColor="White" FontFamily="Tele2DisplaySerif-Regular"
                         HeightRequest="40" FontSize="15"
                         Padding="0" CornerRadius="25"
                         Text="Готово" BackgroundColor="Black">
-                        <Button.Shadow>
-                            <Shadow Brush="Black"
+                            <Button.Shadow>
+                                <Shadow Brush="Black"
                                      Offset="0, 0"
                                      Radius="20"
                                      Opacity="0.5" />
-                        </Button.Shadow>
-                    </Button>
-                </VerticalStackLayout>
-            </Border>
-        </StackLayout>
-    </Grid>
+                            </Button.Shadow>
+                        </Button>
+                    </VerticalStackLayout>
+                </Border>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>
