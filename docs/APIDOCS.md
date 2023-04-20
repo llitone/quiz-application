@@ -186,28 +186,32 @@ requests.get("http://{host}/app/api/v1.0/questions/")
 ```
 #### Ответ
 ```python
-{
-    {subject}: [
-        {
-            "id": {question_id},
-            "age": {question_age},
-            "question": {question_question},    
-            "difficulty": {question_difficulty},
-            "value": {question_value},
-            "subject_id": {question_subject_id},
-            "explanation": {question_explanation}, 
-            "author_id": {author_id},
-            "answers": [
-                {
-                    "id": {answer_id},
-                    "question_id": {answer_question_id},
-                    "answer": {answer_answer},
-                    "is_correct": {answer_is_correct}
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+        "id: {subject_id},
+        "subject": {subject_subject},
+        "questions": [
+            {
+                "age": {question_age},
+                "author_id": {question_author_id},
+                "difficulty": {question_difficulty},
+                "explanation": {question_explanation},
+                "id": {question_id},
+                "question": {question_question},
+                "subject_id": {question_subject_id},
+                "value": {question_value},
+                "answers": [
+                    {
+                        "answer: {answer_answer},
+                        "id": {answer_id},
+                        "is_correct": {answer_is_correct},
+                        "question_id": {answer_question_id}
+                    }
+                ]
+            }
+        ]
+    }
+]
 ```
 ### DELETE
 #### Пример запроса
