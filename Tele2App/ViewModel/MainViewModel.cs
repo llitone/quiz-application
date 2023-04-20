@@ -11,6 +11,23 @@ namespace Tele2App.ViewModel
         public MainViewModel()
         {
             CurrentUser = CurrentUser.GetUser();
+            CurrentUser.Name = this._convert_name(CurrentUser.Name);
+        }
+        private string _convert_name(string name)
+        {
+            string result = "";
+            int count = 0;
+            foreach (char ch in name)
+            {
+                if (count > 10)
+                {
+                    break;
+                }
+                result += ch;
+                count++;
+            }
+            result += "...";
+            return result;
         }
 
         public ButtonCommand OpenSetting
