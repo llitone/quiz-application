@@ -60,6 +60,7 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/users/<phone>")
 ```
+`<phone>` - номер телефона (логин) пользователя. <br>
 #### Ответ
 ```python
 {
@@ -71,7 +72,6 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "points": {points}
 }
 ```
-`<phone>` - номер телефона (логин) пользователя. <br>
 `id` - id пользователя.<br>
 `name` - имя пользователя.<br>
 `age` - возраст пользователя.<br>
@@ -121,6 +121,7 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 #### Ответ
 ```python
 {
@@ -130,7 +131,6 @@ requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "is_correct": {is_correct}
 }
 ```
-`<int:question_id>` - id вопроса. <br>
 `id` - id ответана вопрос. <br>
 `question_id` - id вопроса, к которому привязан ответ.<br>
 `answer` - ответ на вопрос.<br>
@@ -209,6 +209,8 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
+
 #### Ответ
 ```python
 {
@@ -222,7 +224,6 @@ requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "author_id": {author_id}
 }
 ```
-`<int:question_id>` - id вопроса. <br>
 `id` - id вопроса. <br>
 `age` - возраст целевой аудитории.<br>
 `question` - вопрос.<br>
