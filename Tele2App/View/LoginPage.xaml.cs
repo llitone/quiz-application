@@ -9,5 +9,10 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
 }
 
