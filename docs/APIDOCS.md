@@ -111,7 +111,7 @@ requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0/answers/<int:question_id>")
+requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
 
 #### Ответ
@@ -218,7 +218,7 @@ requests.get("http://{host}/app/api/v1.0/questions/")
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0")
+requests.delete("http://{host}/app/api/v1.0")
 ```
 
 #### Ответ
@@ -274,7 +274,7 @@ requests.get("http://{host}/app/api/v1.0/subjects/")
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0/subjects/")
+requests.delete("http://{host}/app/api/v1.0/subjects/")
 ```
 
 #### Ответ
@@ -329,7 +329,7 @@ requests.get("http://{host}/app/api/v1.0")
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0")
+requests.delete("http://{host}/app/api/v1.0")
 ```
 
 #### Ответ
@@ -380,7 +380,7 @@ requests.get("http://{host}/app/api/v1.0")
 ```python
 import requests
 
-requests.delete("http://127.0.0.1:5000/app/api/v1.0")
+requests.delete("http://{host}/app/api/v1.0")
 ```
 
 #### Ответ
