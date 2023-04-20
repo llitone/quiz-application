@@ -1,7 +1,8 @@
 <h1 align="center">API</h1>
 
 
-# v1.0
+<h1 align="center">v1.0</h1>
+
 ## 1. Обзор
 
 API для связи клиента и сервера
@@ -9,7 +10,7 @@ API для связи клиента и сервера
 ## 1.1 Users
 
 ### POST
-#### Пример запроса в формате json
+#### Пример запроса в формате json для регистрации пользователя
 ```python
 {
     "name": {name}, 
@@ -19,13 +20,13 @@ API для связи клиента и сервера
     "points": {points}
 }
 ```
-`name` - 
-`age` - 
-`naphone_number` - 
-`password` - 
-`points` - 
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`phone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 
-#### Пример запроса
+#### Пример запроса для регистрации пользователя
 ```python
 import requests
 
@@ -40,11 +41,11 @@ json = {
 requests.post("http://{host}/app/api/v1.0/users/", json=json)
 ```
 
-`name` - 1<br>
-`age` - 1<br>
-`phone_number` - 1<br>
-`password` - 1<br>
-`points` - 1<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`phone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 
 
 #### Ответ
@@ -53,13 +54,32 @@ requests.post("http://{host}/app/api/v1.0/users/", json=json)
     "success": True
 }
 ```
-### GET
-#### Пример запроса
+#### Пример запроса в формате json для обновления поинтов пользователя
+```python
+{
+    "id": {id}, 
+    "points": {points}
+}
+```
+`id` - id пользователя. <br>
+`points` - количество очков пользователя.<br>
+
+#### Пример запроса для обновления поинтов пользователя
 ```python
 import requests
 
-requests.get("http://{host}/app/api/v1.0/users/<phone>")
+json = {
+    "id": {id}, 
+    "points": {points}
+}
+
+requests.post("http://{host}/app/api/v1.0/users/", json=json)
 ```
+
+`id` - id пользователя. <br>
+`points` - количество очков пользователя.<br>
+
+
 #### Ответ
 ```python
 {
@@ -71,7 +91,38 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "points": {points}
 }
 ```
+`id` - id пользователя.<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`naphone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 
+### GET
+#### Пример запроса
+```python
+import requests
+
+requests.get("http://{host}/app/api/v1.0/users/<phone>")
+```
+`<phone>` - номер телефона (логин) пользователя. <br>
+#### Ответ
+```python
+{
+    "id": {id},
+    "name": {name},
+    "age": {age},
+    "phone_number": {phone_number},
+    "password": {password},
+    "points": {points}
+}
+```
+`id` - id пользователя.<br>
+`name` - имя пользователя.<br>
+`age` - возраст пользователя.<br>
+`naphone_number` - номер телефона (логин) пользователя.<br>
+`password` - хэшированный пароль пользователя.<br>
+`points` - количество очков пользователя.<br>
 ## 1.2 Answers
 
 ### POST
@@ -83,6 +134,9 @@ requests.get("http://{host}/app/api/v1.0/users/<phone>")
     "is_correct": {is_correct}
 }
 ```
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность вопроса.<br>
 #### Пример запроса
 ```python
 import requests
@@ -95,7 +149,9 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/answers/", json=json)
 ```
-
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность ответа.<br>
 #### Ответ
 ```python
 {
@@ -110,6 +166,7 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 #### Ответ
 ```python
 {
@@ -119,6 +176,10 @@ requests.get("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "is_correct": {is_correct}
 }
 ```
+`id` - id ответана вопрос. <br>
+`question_id` - id вопроса, к которому привязан ответ.<br>
+`answer` - ответ на вопрос.<br>
+`is_correct` - корректность ответа.<br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -126,6 +187,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 
 #### Ответ
 ```python
@@ -148,6 +210,14 @@ requests.delete("http://{host}/app/api/v1.0/answers/<int:question_id>")
     "author_id": {author_id}
 }
 ```
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
+
 #### Пример запроса
 ```python
 import requests
@@ -164,7 +234,13 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/questions/", json=json)
 ```
-
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
 #### Ответ
 ```python
 {
@@ -178,6 +254,8 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
+
 #### Ответ
 ```python
 {
@@ -191,6 +269,14 @@ requests.get("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "author_id": {author_id}
 }
 ```
+`id` - id вопроса. <br>
+`age` - возраст целевой аудитории.<br>
+`question` - вопрос.<br>
+`difficulty` - сложность вопроса.<br>
+`value` - кличество очков за правильный ответ.<br>
+`subject_id` - id предмета, к которому привязан вопрос.<br>
+`explanation` - объеснение ответа на вопрос.<br>
+`author_id` - id автора вопроса.<br>
 #### Пример запроса для всех questions
 ```python
 import requests
@@ -226,6 +312,20 @@ requests.get("http://{host}/app/api/v1.0/questions/")
     }
 ]
 ```
+`subject_id` - id предмета, к которому привязан вопрос. <br>
+`subject_subject` - название предмета, к которому привязан вопрос.  <br>
+`question_age` - возраст целевой аудитории вопроса.  <br>
+`question_author_id` - id автора вопроса. <br>
+`question_difficulty` - уровень сложности вопроса. <br>
+`question_explanation` - объеснения.  <br>
+`question_id` - id вопроса.  <br>
+`question_question` - вопрос. <br>
+`question_subject_id` - id предмета, к которому привязан вопрос. <br>
+`question_value` - кличество очков за правильный ответ.  <br>
+`answer_answer` - ответ на вопрос. <br>
+`answer_id` - id ответа на вопрос. <br>
+`answer_is_correct` - корректность ответа на вопрос. <br>
+`answer_question_id` - id вопроса, привязанного к ответу. <br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -233,6 +333,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/questions/<int:question_id>")
 ```
+`<int:question_id>` - id вопроса. <br>
 
 #### Ответ
 ```python
@@ -249,6 +350,8 @@ requests.delete("http://{host}/app/api/v1.0/questions/<int:question_id>")
     "name": {name}
 }
 ```
+`name` - название предмета. <br>
+
 #### Пример запроса
 ```python
 import requests
@@ -259,6 +362,7 @@ json = {
 
 requests.post("http://{host}/app/api/v1.0/subjects/", json=json)
 ```
+`name` - название предмета. <br>
 
 #### Ответ
 ```python
@@ -282,12 +386,16 @@ requests.get("http://{host}/app/api/v1.0/subjects/")
     }
 ]
 ```
+`id` - id предмета. <br>
+`subject` - название предмета. <br>
 #### Пример запроса для одного subject
 ```python
 import requests
 
 requests.get("http://{host}/app/api/v1.0/subjects/<name>")
 ```
+`<name>` - название предмета. <br>
+
 #### Ответ
 ```python
 {
@@ -295,6 +403,8 @@ requests.get("http://{host}/app/api/v1.0/subjects/<name>")
     "subject": {subject}
 }
 ```
+`id` - id предмета. <br>
+`subject` - название предмета. <br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -302,6 +412,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/subjects/<name>")
 ```
+`<name>` - название предмета. <br>
 
 #### Ответ
 ```python
@@ -318,6 +429,7 @@ requests.delete("http://{host}/app/api/v1.0/subjects/<name>")
     "room_id": {room_id}
 }
 ```
+`room_id` - id комнаты квиза. <br>
 #### Пример запроса
 ```python
 import requests
@@ -325,10 +437,9 @@ import requests
 json = {
     "room_id": {room_id}
 }
-
 requests.post("http://{host}/app/api/v1.0/quizzes/", json=json)
 ```
-
+`room_id` - id комнаты квиза. <br>
 #### Ответ
 ```python
 {
@@ -342,14 +453,19 @@ import requests
 
 requests.get("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
+`<int:room_id>` - id комнаты квиза. <br>
+
 #### Ответ
 ```python
 {
     "id": {id}, 
     "room_id": {room_id}, 
     "start_at": {start_at}
-    }
+}
 ```
+`id` - id квиза. <br>
+`room_id` - id комнаты квиза. <br>
+`start_at` - дата начала квиза.  <br>
 ### DELETE
 #### Пример запроса
 ```python
@@ -357,6 +473,7 @@ import requests
 
 requests.delete("http://{host}/app/api/v1.0/quizzes/<int:room_id>")
 ```
+`<int:room_id>` - id комнаты квиза. <br>
 
 #### Ответ
 ```python
