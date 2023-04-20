@@ -19,9 +19,27 @@ namespace Tele2App.ViewModel
         public MainViewModel()
         {
             CurrentUser = CurrentUser.GetUser();
+            CurrentUser.Name = ConvertName(CurrentUser.Name);
             _subjectsService = new SubjectsService();
             _everydayTasksService = new EverydayTasksService();
             GetSubjectsAndSetEverydayTasks();
+        }
+
+        private string ConvertName(string name)
+        {
+            string result = "";
+            int count = 0;
+            foreach (char ch in name)
+            {
+                if (count > 10)
+                {
+                    break;
+                }
+                result += ch;
+                count++;
+            }
+            result += "...";
+            return result;
         }
 
         private async void GetSubjectsAndSetEverydayTasks()
@@ -40,6 +58,20 @@ namespace Tele2App.ViewModel
                 return new ButtonCommand(async () =>
                 {
                     await Shell.Current.GoToAsync(nameof(SettingsPage));
+                });
+            }
+        }
+
+        public ButtonCommandWithParameter GoToQuestion
+        {
+            get
+            {
+                return new ButtonCommandWithParameter(async (Question) =>
+                {
+                    if (Question is null)
+                        return;
+
+                    await Shell.Current.Navigation.PushAsync(new QuestionPage(Question as Question));
                 });
             }
         }

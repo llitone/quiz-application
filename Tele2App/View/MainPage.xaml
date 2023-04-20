@@ -48,6 +48,12 @@
                         <DataTemplate>
                             <Frame BorderColor="#9548D2"
                                 BackgroundColor="#9548D2" Margin="20" HeightRequest="100">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:MainViewModel}}, Path=GoToQuestion}"
+                                                          CommandParameter="{Binding .}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
                                 <VerticalStackLayout>
                                     <Label TextColor="Black" Text="{Binding Text}"></Label>
                                     <Label TextColor="Black" Text="{Binding Points}"></Label>
