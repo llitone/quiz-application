@@ -75,6 +75,10 @@ namespace Tele2App.ViewModel
             {
                 return new ButtonCommand( async () =>
                 {
+                    if (_phoneNumber == null || _password == null || _name == null || _age == 0)
+                        return;
+                    if (_password != _repeatPassword)
+                        return;
                     if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
                     {
                         await Shell.Current.DisplayAlert("Ошибка", "Нет подключения к интернету, попробуйте позже", "ОК");
