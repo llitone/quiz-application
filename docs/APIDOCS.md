@@ -343,14 +343,20 @@ requests.delete("http://{host}/app/api/v1.0")
 ### POST
 #### Пример запроса в формате json
 ```python
-
+{
+    "question_id": {question_id}, 
+    "quiz_id": {quiz_id}, 
+    "is_correct": {is_correct}
+}
 ```
 #### Пример запроса
 ```python
 import requests
 
 json = {
-    
+    "question_id": {question_id}, 
+    "quiz_id": {quiz_id}, 
+    "is_correct": {is_correct}
 }
 
 requests.post("http://{host}/app/api/v1.0", json=json)
@@ -371,9 +377,7 @@ requests.get("http://{host}/app/api/v1.0")
 ```
 #### Ответ
 ```python
-{
-    
-}
+
 ```
 ### DELETE
 #### Пример запроса
