@@ -9,14 +9,14 @@ namespace Tele2App.Data
 {
     public static class SubjectsData
     {
-        private static IEnumerable<Subject> _subjects;
+        private static List<Subject> _subjects;
 
-        public static void SetSubjects(IEnumerable<Subject> subjects)
+        public static void SetSubjects(List<Subject> subjects)
         {
             _subjects = subjects;
         }
 
-        public static IEnumerable<Subject> GetSubjects()
+        public static List<Subject> GetSubjects()
         {
             return _subjects;
         }

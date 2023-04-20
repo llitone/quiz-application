@@ -11,13 +11,14 @@ namespace Tele2App.Services
 {
     public class SubjectsService
     {
-        public async Task<IEnumerable<Subject>> GetSubjects()
+        public async Task<List<Subject>> GetSubjects()
         {
             string _endpoint = "http://d1ffic00lt.com/app/api/v1.0/questions/";
 
             HttpClient client = new HttpClient();
+
             var response = await client.GetAsync(_endpoint);
-            var result = await response.Content.ReadFromJsonAsync<IEnumerable<Subject>>();
+            var result = await response.Content.ReadFromJsonAsync<List<Subject>>();
 
             return result;
         }

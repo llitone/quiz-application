@@ -14,6 +14,6 @@ namespace Tele2App.Model
         [JsonPropertyName("subject")]
         public string Name { get; set; }
         [JsonPropertyName("questions")]
-        public IEnumerable<Question> Questions { get; set; }
+        public List<Question> Questions { get; set; }
     }
 }

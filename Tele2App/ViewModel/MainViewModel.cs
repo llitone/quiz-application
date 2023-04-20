@@ -10,20 +10,27 @@ namespace Tele2App.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private SubjectsService _service;
+        private SubjectsService _subjectsService;
+        private EverydayTasksService _everydayTasksService;
         public CurrentUser CurrentUser { get; set; }
+
+        public ObservableCollection<Question> EverydayTasks { get; set; }
 
         public MainViewModel()
         {
             CurrentUser = CurrentUser.GetUser();
-            _service = new SubjectsService();
-            GetSubjects();
+            _subjectsService = new SubjectsService();
+            _everydayTasksService = new EverydayTasksService();
+            GetSubjectsAndSetEverydayTasks();
         }
 
-        private async void GetSubjects()
+        private async void GetSubjectsAndSetEverydayTasks()
         {
-            var data = await _service.GetSubjects();
+            var data = await _subjectsService.GetSubjects();
             SubjectsData.SetSubjects(data);
+
+            EverydayTasks = new ObservableCollection<Question>(_everydayTasksService.GetTasks(10));
+            Notify(nameof(EverydayTasks));  
         }
 
         public ButtonCommand OpenSetting
