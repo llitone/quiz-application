@@ -1,8 +1,6 @@
 <h1 align="center">Tele2Teen</h1>
 <h1 align="center">2023</h1>
 
-[Документация к API](docs/APIDOCS.md)
-
 ## Содержание
 
 1. Введение
