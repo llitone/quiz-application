@@ -62,6 +62,17 @@ namespace Tele2App.ViewModel
             }
         }
 
+        public ButtonCommand OpenExchange
+        {
+            get
+            {
+                return new ButtonCommand(async () =>
+                {
+                    await Shell.Current.GoToAsync(nameof(ExchangePage));
+                });
+            }
+        }
+
         public ButtonCommandWithParameter GoToQuestion
         {
             get

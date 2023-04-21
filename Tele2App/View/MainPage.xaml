@@ -36,6 +36,11 @@
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout HorizontalOptions="End" Grid.Column="1">
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenExchange}">
+                                
+                            </TapGestureRecognizer>
+                        </HorizontalStackLayout.GestureRecognizers>
                         <Label VerticalOptions="Center"
                                FontFamily="Tele2TextSans-Regular" FontSize="20"
                    TextColor="Black" Text="{Binding CurrentUser.Points}">

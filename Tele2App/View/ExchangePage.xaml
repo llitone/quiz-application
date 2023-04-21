@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Tele2App.ViewModel"
+             x:Class="Tele2App.View.ExchangePage"
+             Title="ExchangePage"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <ViewModel:ExchangeViewModel></ViewModel:ExchangeViewModel>
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="1.2*, 4*, 4*, 3*"
+          ColumnDefinitions="*, *"
+          RowSpacing="20"
+          ColumnSpacing="20"
+          Margin="25, 0, 25, 0">
+        <Frame Grid.Row="0" Grid.Column="1"
+               HorizontalOptions="End" CornerRadius="40">
+            <HorizontalStackLayout>
+                <Label TextColor="Black" Text="{Binding Points}"></Label>
+                <Image Source="point.png" Aspect="Fill"></Image>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame Grid.Column="0" Grid.Row="1" BorderColor="#00B5EF">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="1 гб"></Label>
+                <Label HorizontalOptions="Center" 
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="+"></Label>
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="10 мин"></Label>
+
+                <HorizontalStackLayout Margin="0, 20, 0, 0" HorizontalOptions="Center">
+                    <Label FontFamily="Tele2TextSans-Bold" FontSize="18" TextColor="Black" Text="1000"></Label>
+                    <Image HeightRequest="40" Source="point.png" Aspect="Fill"></Image>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame Grid.Column="1" Grid.Row="1" BorderColor="#C882FF">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="1 гб"></Label>
+                <Label HorizontalOptions="Center" 
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="+"></Label>
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="10 мин"></Label>
+
+                <HorizontalStackLayout Margin="0, 20, 0, 0" HorizontalOptions="Center">
+                    <Label FontFamily="Tele2TextSans-Bold" FontSize="18" TextColor="Black" Text="1000"></Label>
+                    <Image HeightRequest="40" Source="point.png" Aspect="Fill"></Image>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+
+        <Frame Grid.Column="0" Grid.Row="2" BorderColor="#FFAF0F">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="1 гб"></Label>
+                <Label HorizontalOptions="Center" 
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="+"></Label>
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="10 мин"></Label>
+
+                <HorizontalStackLayout Margin="0, 20, 0, 0" HorizontalOptions="Center">
+                    <Label FontFamily="Tele2TextSans-Bold" FontSize="18" TextColor="Black" Text="1000"></Label>
+                    <Image HeightRequest="40" Source="point.png" Aspect="Fill"></Image>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+
+        <Frame Grid.Column="1" Grid.Row="2" BorderColor="#FF6633">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="1 гб"></Label>
+                <Label HorizontalOptions="Center" 
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="+"></Label>
+                <Label HorizontalOptions="Center"
+                    TextColor="Black" FontSize="18" FontFamily="Tele2TextSans-Bold" Text="10 мин"></Label>
+
+                <HorizontalStackLayout Margin="0, 20, 0, 0" HorizontalOptions="Center">
+                    <Label FontFamily="Tele2TextSans-Bold" FontSize="18" TextColor="Black" Text="1000"></Label>
+                    <Image HeightRequest="40" Source="point.png" Aspect="Fill"></Image>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+
+        <Image Grid.Row="3" Source="tele2_logo_black.png" Grid.ColumnSpan="2">
+            
+        </Image>
+    </Grid>
+</ContentPage>
