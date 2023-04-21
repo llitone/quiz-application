@@ -77,9 +77,17 @@ async function deleteQuestionbyId(idd){
     let result = await axios.delete(`http://d1ffic00lt.com/app/api/v1.0/questions/${idd}`);
     return result;
 }
+
+async function newSubject(namee){
+    console.log(namee);
+    const res = await axios.post('http://d1ffic00lt.com/app/api/v1.0/subjects/', {
+        name: namee
+    })
+    return res;
+}
 // async function getQuestionId(){
 //     const res = await axios.post('http://d1ffic00lt.com/app/api/v1.0/questions/');
 //     return res
 // }
 
-export { getData, getDataUser, loginUser, makenewQuestion, loginUser2, getSubjects, putAnswerstoQuestion, deleteQuestionbyId };
+export { getData, getDataUser, loginUser, makenewQuestion, loginUser2, getSubjects, putAnswerstoQuestion, deleteQuestionbyId, newSubject };
