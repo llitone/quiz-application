@@ -1,17 +1,21 @@
 <template>
     <div>
+        <img style="height: 100px; width: 100px; margin-bottom: -50px; margin-top: -50px;" src="https://media.discordapp.net/attachments/787001151353520140/1098749673033969694/Tele2_logo_black.png?width=612&height=612" alt="">
         <button @click="newQuestion">Добавить вопрос</button>
         <button @click="logout">Выйти из аккаунта</button>
+        <button @click="newSubject">Добавить предмет в БД</button>
+        <br>
+        <br>
     <!-- </div> -->
     <!-- <div> -->
-        <table style="border: 1px solid black">
+        <table style="width: 95%; margin: auto; border: 1px solid black">
             <tr>
                 <th>id</th>
-                <th>возраст??</th>
+                <th>возраст</th>
                 <th>сложность</th>
                 <th>очки за correct ответ</th>
                 <th>вопрос</th>
-                <th>ответы лол</th>
+                <th>ответы</th>
                 <th>объяснение</th>
                 <th>id предмета</th>
                 <th>delete</th>
@@ -55,26 +59,27 @@ export default {
             delete(window.localStorage.jwt)
             this.$router.push('/')
         },
+        newSubject(){
+            this.$router.push('/newsbj')
+        },
         deleteQuestion(id){
-            deleteQuestionbyId(id).then((data) => {
-                console.log(data);
+            deleteQuestionbyId(id).then(() => {
                 this.$router.push('/')
             })
         }
     },
     beforeCreate() {
-        console.log(window.localStorage);
         if (window.localStorage.jwt == undefined){
             this.$router.push('/')
         }
         getData().then((data1) => {
-            console.log(window.localStorage.jwt.slice(19));
             // let datas = JSON.stringify(data1.data)
-            // console.log(datas);
+            
             let datass = data1.data;
+            console.log(datass);
             let datas = [];
             for (let i = 0; i < datass.length; i++){
-                // console.log(datass[i]);
+                console.log(datass[i]);
                 // if (data1.data[i])
                 for (let j = 0; j < datass[i]['questions'].length; j++){
                     console.log(i, j);
@@ -89,7 +94,6 @@ export default {
                 }
                 // [{"id":1,"questions":[{"age":16,"answers":[{"answer":"гитлер","id":1,"is_correct":true,"question_id":1},{"answer":"настя","id":2,"is_correct":false,"question_id":1},{"answer":"захар","id":3,"is_correct":true,"question_id":1},{"answer":"мама дификульта","id":4,"is_correct":true,"question_id":1}],"author_id":1,"difficulty":1,"explanation":"у гитлера др в этот день","id":1,"question":"у кого др 20 апреля?","subject_id":1,"value":10},{"age":4,"answers":[],"author_id":1,"difficulty":1902378,"explanation":"хз","id":2,"question":"когда родился путин?","subject_id":1,"value":120123213}],"subject":"история"}]
             }
-            console.log(datas);
             this.data = {
                 ...datas
             }

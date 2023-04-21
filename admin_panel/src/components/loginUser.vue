@@ -33,7 +33,7 @@ export default {
     beforeCreate(){
         console.log(window.localStorage);
         if (window.localStorage.jwt != undefined){
-            this.$router.push('/posts')
+            this.$router.push('/admin')
         }
     },
     methods: {
@@ -57,12 +57,9 @@ export default {
                     }
                     return result;
                 }
-                console.log(res.data);
-                console.log(this.password);
                 if (res.data.password == this.password){
                     window.localStorage.setItem('jwt', makeid(19) + String(res.data.id))
-                    console.log(localStorage);
-                    this.$router.push('/posts')
+                    this.$router.push('/admin')
                 }
                 
                 // if (res.data.accessToken) {
