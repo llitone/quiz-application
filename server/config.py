@@ -1,6 +1,6 @@
 import logging
 
-__version__ = "1.0.0pre"
+__version__ = "1.0.0"
 LOGGING_LEVEL = logging.INFO
 FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
