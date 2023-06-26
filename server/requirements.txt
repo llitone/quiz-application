@@ -1,5 +1,5 @@
 Flask~=2.3.2
 Flask-HTTPAuth~=4.8.0
 requests~=2.31.0
-SQLAlchemy~=2.0.16
+SQLAlchemy~=2.0.17
 qrcode~=7.4.2
